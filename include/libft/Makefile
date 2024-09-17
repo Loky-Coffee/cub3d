@@ -6,7 +6,7 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 12:28:01 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/20 16:22:29 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/09/17 20:00:19 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	cp libft.h ../
-	cp $(NAME) ../
 
 $(OBJ_DIR)%.o: %.c
 	@mkdir -p $(OBJ_DIR)
