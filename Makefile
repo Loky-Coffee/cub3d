@@ -5,11 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/10 14:59:06 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/17 20:11:56 by aalatzas         ###   ########.fr        #
+#    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
+#    Updated: 2024/09/17 20:13:59 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
