@@ -6,42 +6,40 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/17 20:13:59 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/09/17 22:44:44 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-LIB_MLX = ./include/libmlx42.a
-LIBFT = ./include/libft.a
-MLX = ./include/libmlx42.a -Iinclude -lglfw
+CC = cc # Compiler
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g # Compiler-Flags, nur für das Kompilieren
+LIB_MLX = ./include/libmlx42.a # Statische Bibliothek MLX42
+LIBFT = ./include/libft.a # Statische Bibliothek libft
+MLX = ./include/libmlx42.a -lglfw # Verlinken von MLX42 und GLFW
 
-# Verzeichnisse
+PARSE_OBJ_DIR = $(OBJ_DIR)parsing/
+RENDER_OBJ_DIR = $(OBJ_DIR)render/
+
 OBJ_DIR = obj/object_mandatory/
 SRC_DIR = game
 
-# Quellcodedateien
 SRC_PARSING = $(wildcard $(SRC_DIR)/parsing/*.c)
 SRC_RENDER = $(wildcard $(SRC_DIR)/render/*.c)
 SRC_MAIN = $(SRC_DIR)/main.c
 
 SRC = $(SRC_PARSING) $(SRC_RENDER) $(SRC_MAIN)
-
-# Objektdateien
-OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)%.o, $(SRC))
-
-# Name des Programms
-NAME = cub3D
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)%.o, $(SRC)) # Objektdateien
+NAME = cub3D # Name des Programms
 
 # Regeln
 all: $(NAME)
 
-$(NAME): $(OBJ) libft $(LIB_MLX)
+$(NAME): libft $(OBJ)  $(LIB_MLX)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX)
 	@echo "Build abgeschlossen: $(NAME)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(PARSE_OBJ_DIR) $(RENDER_OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
@@ -58,7 +56,8 @@ fclean: clean
 re: fclean all
 
 ############################ CUB3D BONUS_PART_RULES ############################
-# Hier kannst du den Bonus-Part hinzufügen, falls benötigt.
+
+#IN PROGRESS!
 
 ############################## MLX42_BUILD_RULES ###############################
 $(LIB_MLX):
