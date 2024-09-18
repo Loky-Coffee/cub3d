@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 06:38:00 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 08:01:19 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void	init_struct(t_p *a, int argc, char **argv)
 	a->argv = argv;
 	a->map_name = argv[1];
 	a->map_fd = 0;
-	a->floor_R = 0;
-	a->floor_G = 0;
-	a->floor_B = 0;
-	a->ceiling_R = 0;
-	a->ceiling_G = 0;
-	a->ceiling_B = 0;
+	a->floor_rgb[0] = 0;
+	a->floor_rgb[1] = 0;
+	a->floor_rgb[2] = 0;
+	a->ceiling_rgb[0] = 0;
+	a->ceiling_rgb[1] = 0;
+	a->ceiling_rgb[2] = 0;
 }
 
 int	main_parsing(int argc, char **argv)
