@@ -6,12 +6,12 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 03:03:38 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 03:36:13 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING
-#define PARSING
+#ifndef PARSING_H
+#define PARSING_H
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -27,6 +27,7 @@ typedef struct s_p
 	char **map;
 	char **argv;
 	int argc;
+	int map_fd;
 }t_p;
 
 

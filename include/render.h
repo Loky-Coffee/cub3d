@@ -1,8 +1,6 @@
+#ifndef RENDER_H
+# define RENDER_H
 
-
-#ifndef RENDER
-# define RENDER
-
-int main_render();
+int main_render(void);
 
 #endif

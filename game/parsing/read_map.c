@@ -6,13 +6,13 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:38:03 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 03:04:37 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 03:41:36 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void check_map_name(t_p *a)
+void	check_map_name(t_p *a)
 {
 	const char	*p;
 
@@ -29,19 +29,40 @@ void check_map_name(t_p *a)
 	}
 }
 
-int open_map(t_p *a)
+int	open_map(t_p *a)
 {
-	int fd;
-
-	if ((fd = open(a->map_name, O_RDONLY)) == -1)
+	a->map_fd = open(a->map_name, O_RDONLY);
+	if (a->map_fd == -1)
 	{
-		perror("Error: Cannot open map file\n");
+		perror("Error: Cannot open map file");
 		exit(1);
 	}
 	return (0);
 }
 
-int read_map(t_p *a)
+int	read_map(t_p *a)
 {
+	char	*line;
+	char	*buff;
+	char	*temp;
 
+	line = NULL;
+	buff = NULL;
+	temp = NULL;
+	while (true)
+	{
+		line = get_next_line(a->map_fd);
+		if (line == NULL)
+			break ;
+		temp = ft_strjoin(buff, line);
+		if (temp == NULL)
+			perror("Error: Malloc read_map: line.56");
+		free(buff);
+		buff = temp;
+		free(line);
+	}
+	close(a->map_fd);
+	a->map = ft_split(buff, '\n');
+	free(buff);
+	return (0);
 }

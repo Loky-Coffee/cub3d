@@ -1,9 +1,10 @@
-#include <stdio.h>
+// PLEASE KEINE HEADER HIER IST DIE HAUPT MAIN UND KANN SEIN DAS WIR BEIDE HIER WAS SCHREIBEN MUSSEN!!!!
+
 #include "../include/cub3d.h"
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int ret_val;
+	int	ret_val;
 
 	ret_val = main_parsing(argc, argv);
 	if (ret_val <= 0)
