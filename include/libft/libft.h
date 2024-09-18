@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:32:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 06:28:18 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:50:26 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void				ft_error(char *str, int exit_code);
 int					ft_is_min_nbr(int *arg);
 int					ft_is_max_nbr(int *arg);
 int					ft_is_int(char *str);
+int					ft_isspace(int c);
 
 #endif

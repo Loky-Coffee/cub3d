@@ -6,20 +6,11 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:38:03 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 06:50:18 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:56:33 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	print_map(t_p *a)
-{
-	int i;
-
-	i = 0;
-	while (a->map[i])
-		printf("%s\n", a->map[i++]);
-}
 
 void	check_map_name(t_p *a)
 {
@@ -65,7 +56,7 @@ int	read_map(t_p *a)
 			break ;
 		temp = ft_strjoin(buff, line);
 		if (temp == NULL)
-			perror("Error4:\n Malloc LoadMap: line.66");
+			perror("Error4:\n ft_strjoin LoadMap: line.66");
 		free(buff);
 		buff = temp;
 		free(line);

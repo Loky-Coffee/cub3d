@@ -1,0 +1,14 @@
+# Ignoriere den README (falls du die Datei manuell ausschließen möchtest)
+README
+README.md
+
+# Ignoriere den gesamten header von MLX und Libft
+/include/libft.h
+
+# Ignoriere den gesamten obj-Ordner
+obj/
+
+# Ignoriere alle kompilierten Binärdateien
+cub3D
+libmlx42.a
+libft.a
