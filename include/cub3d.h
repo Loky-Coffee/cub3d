@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 20:19:27 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/17 22:11:21 by aalatzas         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// PLEASE KEINE HEADER HIER IST DIE HAUPT HEADER UND KANN SEIN DAS WIR BEIDE HIER WAS SCHREIBEN MUSSEN!!!!
 
 #ifndef CUB3D
 # define CUB3D
