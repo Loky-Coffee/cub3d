@@ -6,20 +6,12 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 15:24:15 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:10:51 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <math.h>
-# include <stdbool.h>
 
 #ifndef MAX_PATH_LENGTH
 #define MAX_PATH_LENGTH 4096

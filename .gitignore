@@ -4,6 +4,7 @@ README.md
 
 # Ignoriere den gesamten header von MLX und Libft
 /include/libft.h
+MLX42.h
 
 # Ignoriere den gesamten obj-Ordner
 obj/
@@ -12,3 +13,4 @@ obj/
 cub3D
 libmlx42.a
 libft.a
+.gitignore
