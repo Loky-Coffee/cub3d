@@ -48,7 +48,7 @@ void ren_draw_square(mlx_image_t *img, int x, int y, t_color clr)
 	}
 }
 
-void ren_draw_table(mlx_image_t *img, char map[6][13], int row, int col) // MUSS NOCH ANGEPASST WERDEN
+void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH ANGEPASST WERDEN
 {
 	int i;
 	int j;
