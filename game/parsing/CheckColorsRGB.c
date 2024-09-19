@@ -6,16 +6,16 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 12:03:56 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:47:53 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static unsigned char	get_next_color(char **str, bool comma, unsigned char *p)
+unsigned char	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {
-	unsigned char	color;
-	size_t			i;
+	int		color;
+	size_t	i;
 
 	color = 0;
 	i = 0;
@@ -26,33 +26,35 @@ static unsigned char	get_next_color(char **str, bool comma, unsigned char *p)
 		(*str)++;
 	}
 	if (comma == false)
-		return (printf("ERROR: incorrect number of commas in RGB values\n"), 1);
+		error_exit(a, "ERROR: incorrect number of commas in RGB values", 1);
 	while (*str && **str && ft_isdigit(**str))
 	{
-		color = color * 10 + (*(*str) - '0');
+		color = color * 10 + (**str - '0');
 		i++;
 		(*str)++;
 	}
-	*p = color;
+	if (color < 0 || color > 255)
+		error_exit(a, "ERROR: Colors must be between 0-255", 1);
+	*p = (unsigned char)color;
 	return (0);
 }
 
-static int	convert_color_to_int(t_color *color, char *str)
+static int	convert_color_to_int(t_color *color, char *str, t_p *a)
 {
 	char	*it;
 
 	it = str + 1;
-	if (get_next_color (&it, true, &color->red) != 0)
+	if (get_next_color (&it, true, &color->red, a) != 0)
 		return (1);
-	if (get_next_color (&it, false, &color->green) != 0)
+	if (get_next_color (&it, false, &color->green, a) != 0)
 		return (1);
-	if (get_next_color (&it, false, &color->blue) != 0)
+	if (get_next_color (&it, false, &color->blue, a) != 0)
 		return (1);
 	color->alpha = 255;
 	return (0);
 }
 
-static int	check_commas(const char *line)
+static int	check_commas(const char *line, t_p *a)
 {
 	int	count;
 	int	y;
@@ -66,27 +68,22 @@ static int	check_commas(const char *line)
 		y++;
 	}
 	if (count != 2)
-		return (printf("ERROR: incorrect number of commas in RGB values\n"), 1);
+		error_exit(a, "ERROR: incorrect number of commas in RGB values", 1);
 	return (0);
 }
 
-// int check_color_number()
-// {
-
-// }
-
-int	check_map_colors(t_p *a)
+int	init_colors(t_p *a)
 {
 	size_t	y;
 
 	y = 0;
-	if (check_commas(a->map[a->map_pos.floor_color_pos]) != 0)
+	if (check_commas(a->map[a->map_pos.floor_color_pos], a) != 0)
 		return (1);
-	if (check_commas(a->map[a->map_pos.ceiling_color_pos]) != 0)
+	if (check_commas(a->map[a->map_pos.ceiling_color_pos], a) != 0)
 		return (1);
-	if (convert_color_to_int(&a->floor, a->map[a->map_pos.floor_color_pos]) != 0)
+	if (convert_color_to_int(&a->floor, a->map[a->map_pos.floor_color_pos], a) != 0)
 		return (1);
-	if (convert_color_to_int(&a->ceiling, a->map[a->map_pos.ceiling_color_pos]) != 0)
+	if (convert_color_to_int(&a->ceiling, a->map[a->map_pos.ceiling_color_pos], a) != 0)
 		return (1);
 	return (0);
 }

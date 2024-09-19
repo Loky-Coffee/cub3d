@@ -13,20 +13,28 @@
 #include "./libft.h"
 #include "./MLX42.h"
 
+# ifndef MAX_PATH_LENGTH
+#  define MAX_PATH_LENGTH 4096
+# endif
+
 // muss am ende sein wegen prototypes die unsere funktionen benutzen
-#include "parsing.h"
-#include "render.h"
+
 
 typedef struct s_map
 {
-	char	*map_name;
+	char	map_name[255];
 	char	**map;
 	char	north_texture[MAX_PATH_LENGTH];
 	char	south_texture[MAX_PATH_LENGTH];
 	char	west_texture[MAX_PATH_LENGTH];
 	char	east_texture[MAX_PATH_LENGTH];
-	t_color	floor;
-	t_color	ceiling;
+	int		player_pos_x;
+	int		player_pos_y;
+	int		floor;
+	int		ceiling;
 }t_map;
+
+#include "parsing.h"
+#include "render.h"
 
 #endif
