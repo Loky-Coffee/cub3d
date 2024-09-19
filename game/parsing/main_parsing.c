@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 19:59:15 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:03:14 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	main_parsing(int argc, char **argv, t_map *map, t_p *a)
 		return (free_split(a->map), 1);
 	find_map_start(a);
 	erase_oldmap(a);
+	find_char_position(a);
+	search_utils(a);
 	// print_map(a);
 	if (load_data_on_stack(a, map) != 0)
 		return (free_split(a->map), 1);

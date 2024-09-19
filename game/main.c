@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 	(void)argv;
 	if (main_parsing(argc, argv, &main_struct, &parsing) != 0)
 		return (EXIT_FAILURE);
-	if (main_render() != 0)
-	    return (EXIT_FAILURE);
+	// if (main_render() != 0)
+	//     return (EXIT_FAILURE);
 
 	int i = 0;
 	printf("-----------------------------------------------------------\n");

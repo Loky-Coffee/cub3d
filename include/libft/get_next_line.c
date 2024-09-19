@@ -6,24 +6,24 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 22:16:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/09 03:12:04 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:06:11 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != '\0')
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
-}
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	while (*s != '\0')
+// 	{
+// 		if (*s == (char)c)
+// 			return ((char *)s);
+// 		s++;
+// 	}
+// 	if ((char)c == '\0')
+// 		return ((char *)s);
+// 	return (NULL);
+// }
 
 char	*greateline(int fd, char *everline)
 {

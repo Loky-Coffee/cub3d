@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 20:38:05 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:03:01 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define YELLOW "\033[93m"
 # define BLUE "\033[94m"
 # define MAGENTA "\033[95m"
-# define CYAN "\033[96m" 
+# define CYAN "\033[96m"
 # define RESET "\033[0m"
 
 typedef union s_color
@@ -86,5 +86,7 @@ int		error_exit(t_p *a, char *error_msg, int error_code);
 void	find_map_start(t_p *a);
 void	erase_oldmap(t_p *a);
 int		load_data_on_stack(t_p *src, t_map *dest);
+void	find_char_position(t_p *a);
+void	search_utils(t_p *a);
 
 #endif
