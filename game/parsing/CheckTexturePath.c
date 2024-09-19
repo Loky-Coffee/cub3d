@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:48:47 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 06:23:27 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:59:14 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	check_path_to_texture(t_p *a)
 {
-	size_t i;
-	size_t y;
-	char line[4096];
+	size_t	i;
+	size_t	y;
+	char	line[4096];
 
 	i = 0;
 	while (i < 4)

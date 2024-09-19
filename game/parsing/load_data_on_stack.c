@@ -6,13 +6,13 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:24:45 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 11:25:34 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:58:53 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int		load_data_on_stack(t_p *a)
+int	load_data_on_stack(t_p *a)
 {
 	(void)a;
 	return (0);

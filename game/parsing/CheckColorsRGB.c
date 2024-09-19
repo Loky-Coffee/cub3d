@@ -6,17 +6,16 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 10:18:32 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:03:56 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static unsigned char get_next_color(char **str, bool comma, unsigned char *save_color)
+static unsigned char	get_next_color(char **str, bool comma, unsigned char *p)
 {
 	unsigned char	color;
 	size_t			i;
-
 
 	color = 0;
 	i = 0;
@@ -34,31 +33,29 @@ static unsigned char get_next_color(char **str, bool comma, unsigned char *save_
 		i++;
 		(*str)++;
 	}
-	*save_color = color;
+	*p = color;
 	return (0);
 }
 
-static int convert_color_to_int(t_color *color, char *str)
+static int	convert_color_to_int(t_color *color, char *str)
 {
-	char *it;
-
+	char	*it;
 
 	it = str + 1;
-	if(get_next_color(&it, true, &color->red) != 0)
+	if (get_next_color (&it, true, &color->red) != 0)
 		return (1);
-	if (get_next_color(&it, false, &color->green) != 0)
+	if (get_next_color (&it, false, &color->green) != 0)
 		return (1);
-	if (get_next_color(&it, false, &color->blue) != 0)
+	if (get_next_color (&it, false, &color->blue) != 0)
 		return (1);
 	color->alpha = 255;
 	return (0);
 }
 
-
-static int check_commas(const char *line)
+static int	check_commas(const char *line)
 {
-	int count;
-	int y;
+	int	count;
+	int	y;
 
 	count = 0;
 	y = 0;
@@ -78,9 +75,9 @@ static int check_commas(const char *line)
 
 // }
 
-int check_map_colors(t_p *a)
+int	check_map_colors(t_p *a)
 {
-	size_t y;
+	size_t	y;
 
 	y = 0;
 	if (check_commas(a->map[a->map_pos.floor_color_pos]) != 0)

@@ -6,22 +6,22 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 04:16:13 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 09:45:09 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:02:24 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int check_color_pos(t_p *a)
+static int	check_color_pos(t_p *a)
 {
-	int i;
-	int y;
+	int	i;
+	int	y;
 
 	i = 0;
 	y = 0;
 	while (a->map && a->map[y])
 	{
-		while(a->map && a->map[y] && a->map[y][i] != '\0')
+		while (a->map && a->map[y] && a->map[y][i] != '\0')
 		{
 			if (a->map[y][i] == 'F')
 				a->map_pos.floor_color_pos = y;
@@ -34,22 +34,21 @@ static int check_color_pos(t_p *a)
 	}
 	if (a->map_pos.floor_color_pos == -1 || a->map_pos.ceiling_color_pos == -1)
 		return (printf("ERROR: Map aquments are not correct!"), 1);
-
 	return (0);
 }
 
-static int check_texture_pos(t_p *a)
+static int	check_texture_pos(t_p *a)
 {
-	int i;
-	int y;
-	int nbr;
+	int	i;
+	int	y;
+	int	nbr;
 
-	i = 0;
 	y = 0;
 	nbr = 0;
 	while (a->map && a->map[y])
 	{
-		while(a->map && a->map[y] && a->map[y][i] != '\0')
+		i = 0;
+		while (a->map && a->map[y] && a->map[y][i] != '\0')
 		{
 			if (a->map[y][i] == 'O' && a->map[y][i - 1] == 'N')
 				a->map_pos.north_txt = y;
@@ -59,27 +58,28 @@ static int check_texture_pos(t_p *a)
 				a->map_pos.west_txt = y;
 			else if (a->map[y][i] == 'A' && a->map[y][i - 1] == 'E')
 				a->map_pos.east_txt = y;
-			else if (a->map[y][i] == 'F')
-				a->map_pos.floor_color_pos = y;
-			else if (a->map[y][i] == 'C')
-				a->map_pos.ceiling_color_pos = y;
 			i++;
 		}
-		i = 0;
 		y++;
 	}
 	if (a->map_pos.north_txt == -1 || a->map_pos.south_txt == -1 || \
 	a->map_pos.west_txt == -1 || a->map_pos.east_txt == -1)
 		return (printf("ERROR: Map aquments are not correct!"), 1);
-
 	return (0);
 }
 
 int	check_map_identifier(t_p *a)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
+	if (check_texture_pos(a) != 0)
+		return (EXIT_FAILURE);
+	if (check_color_pos(a) != 0)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 	// while (a->map[i])
 	// {
 	// 	if (i == 0 && !(ft_strncmp(a->map[i], "NO ", 3) == 0))
@@ -96,9 +96,3 @@ int	check_map_identifier(t_p *a)
 	// 		return (printf("ERROR:\n Ceiling color Identifier must be C"), 1);
 	// 	i++;
 	// }
-	if(check_texture_pos(a) != 0)
-		return (EXIT_FAILURE);
-	if(check_color_pos(a) != 0)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}

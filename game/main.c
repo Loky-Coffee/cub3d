@@ -10,8 +10,8 @@ int	main(int argc, char **argv)
 	if(!main_parsing(argc, argv))
 		return (EXIT_FAILURE);
 
-	// if (!main_render())
-	// 	return (EXIT_FAILURE);
+	if (!main_render())
+		return (EXIT_FAILURE);
 
 	return (EXIT_SUCCESS);
 }
