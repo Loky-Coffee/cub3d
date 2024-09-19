@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 21:00:39 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:02:08 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static void	init_struct(t_p *a, int argc, char **argv)
 	ft_memset(a->south_texture, '\0', sizeof(a->south_texture));
 	ft_memset(a->west_texture, '\0', sizeof(a->west_texture));
 	ft_memset(a->east_texture, '\0', sizeof(a->east_texture));
+	a->map_pos.north_txt = -1;
+	a->map_pos.south_txt = -1;
+	a->map_pos.west_txt = -1;
+	a->map_pos.east_txt = -1;
+	a->map_pos.floor_color_pos = -1;
+	a->map_pos.ceiling_color_pos = -1;
+	a->map_pos.map_pos_start = -1;
+	a->map_pos.map_pos_end = -1;
 }
 void	print_map(t_p *a)
 {
@@ -48,6 +56,14 @@ void	print_map(t_p *a)
 	printf("Floor red:%d, green:%d, blue:%d,  alpha:%d, Color:%08X \n", a->floor.red, a->floor.green, a->floor.blue, a->floor.alpha, a->floor.color);
 	printf("--------------------------------------------------------------------------\n");
 	printf("Ceiling red:%d, green:%d, blue:%d,  alpha:%d, Color:%08X \n", a->ceiling.red, a->ceiling.green, a->ceiling.blue, a->ceiling.alpha, a->ceiling.color);
+	printf("--------------------------------------------------------------------------\n");
+
+	printf("north_pos: %d\n", a->map_pos.north_txt);
+	printf("south_txt: %d\n", a->map_pos.south_txt);
+	printf("west_txt: %d\n", a->map_pos.west_txt);
+	printf("east_txt: %d\n", a->map_pos.east_txt);
+	printf("floor_color_pos: %d\n", a->map_pos.floor_color_pos);
+	printf("ceiling_color_pos: %d\n", a->map_pos.ceiling_color_pos);
 	printf("--------------------------------------------------------------------------\n");
 }
 
@@ -67,6 +83,7 @@ int	main_parsing(int argc, char **argv)
 		return(free_split(a.map), 1);
 	if (check_map_colors(&a) != 0)
 		return(free_split(a.map), 1);
+	print_map(&a);
 	// if (!check_map_horizondal(&a))
 	// 	return(free_split(a.map), 1);
 	// if (!check_maps_vertikal(&a))
@@ -74,7 +91,6 @@ int	main_parsing(int argc, char **argv)
 	if(load_data_on_stack(&a) != 0)
 		return(free_split(a.map), 1);
 	//Printmap Debug Funktion!
-	print_map(&a);
 	free_split(a.map);
 	return (0);
 }

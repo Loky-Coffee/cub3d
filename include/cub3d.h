@@ -17,4 +17,16 @@
 #include "parsing.h"
 #include "render.h"
 
+typedef struct s_map
+{
+	char	*map_name;
+	char	**map;
+	char	north_texture[MAX_PATH_LENGTH];
+	char	south_texture[MAX_PATH_LENGTH];
+	char	west_texture[MAX_PATH_LENGTH];
+	char	east_texture[MAX_PATH_LENGTH];
+	t_color	floor;
+	t_color	ceiling;
+}t_map;
+
 #endif

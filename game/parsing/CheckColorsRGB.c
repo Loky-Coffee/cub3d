@@ -3,98 +3,93 @@
 /*                                                        :::      ::::::::   */
 /*   CheckColorsRGB.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 01:42:42 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:18:32 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static unsigned char get_next_color(char **str)
+static unsigned char get_next_color(char **str, bool comma, unsigned char *save_color)
 {
-	unsigned char color;
-	size_t i;
+	unsigned char	color;
+	size_t			i;
+
 
 	color = 0;
 	i = 0;
 	while (!ft_isdigit(**str))
+	{
+		if (*(*str) == ',')
+			comma = true;
 		(*str)++;
+	}
+	if (comma == false)
+		return (printf("ERROR: incorrect number of commas in RGB values\n"), 1);
 	while (*str && **str && ft_isdigit(**str))
 	{
 		color = color * 10 + (*(*str) - '0');
 		i++;
 		(*str)++;
 	}
-	if (i > 3)
-	{
-		printf("only 3 digits allowed on colors\n");
-		exit (EXIT_FAILURE);
-	}
-	return (color);
+	*save_color = color;
+	return (0);
 }
 
-int convert_color_to_int(t_color *color, char *str)
+static int convert_color_to_int(t_color *color, char *str)
 {
 	char *it;
 
+
 	it = str + 1;
-	color->red = get_next_color(&it);
-	color->green = get_next_color(&it);
-	color->blue = get_next_color(&it);
+	if(get_next_color(&it, true, &color->red) != 0)
+		return (1);
+	if (get_next_color(&it, false, &color->green) != 0)
+		return (1);
+	if (get_next_color(&it, false, &color->blue) != 0)
+		return (1);
 	color->alpha = 255;
 	return (0);
 }
 
 
-int check_rgb_value(const char *line, size_t *y, int color_count)
+static int check_commas(const char *line)
 {
-	int color_value = 0;
-	size_t lenght = 0;
+	int count;
+	int y;
 
-	while (line[*y] == ' ')
-		(*y)++;
-	while (ft_isdigit(line[*y]))
+	count = 0;
+	y = 0;
+	while (line[y])
 	{
-		color_value = color_value * 10 + (line[*y] - '0');
-		lenght++;
-		(*y)++;
+		if (line[y] == ',')
+			count++;
+		y++;
 	}
-	if (color_value < 0 || color_value > 255 || lenght == 0 || lenght > 3)
-		return (printf("ERROR: RGB out of range 0,0,0 to 255,255,255\n"), 1);
-	while (line[*y] == ' ')
-		(*y)++;
-	if (color_count < 2 && line[*y] != ',')
-		return (printf("ERROR: Missing comma between RGB values\n"), 1);
-	if (line[*y] == ',')
-		(*y)++;
+	if (count != 2)
+		return (printf("ERROR: incorrect number of commas in RGB values\n"), 1);
 	return (0);
 }
 
+// int check_color_number()
+// {
+
+// }
+
 int check_map_colors(t_p *a)
 {
-	size_t i = 4;
 	size_t y;
-	int color_count;
 
-	// printf("HEY\n");
-	// fflush(stdout);
-	while (i < 6)
-	{
-		y = 1;
-		color_count = 0;
-		while (a->map && a->map[i] && ft_isspace(a->map[i][y]) != 0)
-			y++;
-		while (color_count < 3)
-		{
-			if (check_rgb_value(a->map[i], &y, color_count) == 1)
-				return (1);
-			color_count++;
-		}
-		i++;
-	}
-	convert_color_to_int(&a->floor, a->map[4]);
-	convert_color_to_int(&a->ceiling, a->map[5]);
+	y = 0;
+	if (check_commas(a->map[a->map_pos.floor_color_pos]) != 0)
+		return (1);
+	if (check_commas(a->map[a->map_pos.ceiling_color_pos]) != 0)
+		return (1);
+	if (convert_color_to_int(&a->floor, a->map[a->map_pos.floor_color_pos]) != 0)
+		return (1);
+	if (convert_color_to_int(&a->ceiling, a->map[a->map_pos.ceiling_color_pos]) != 0)
+		return (1);
 	return (0);
 }
