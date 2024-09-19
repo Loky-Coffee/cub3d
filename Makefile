@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/17 22:44:44 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/09/19 01:28:33 by csteudin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
