@@ -13,6 +13,7 @@ int initialise_game(void)
 
 	game()->player.pos.x = 96;
 	game()->player.pos.y = 96;
-
+	game()->player.angle = 0; //TODO: ANGEBEN DER START HIMMELSRICHTUNG
+	
 	return (0);
 }

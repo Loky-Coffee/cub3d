@@ -14,6 +14,10 @@ void hook_move(mlx_key_data_t keydata, void *param)
 			game()->player.move_down = (keydata.action == MLX_PRESS);
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_D)
 			game()->player.move_right = (keydata.action == MLX_PRESS);
+		else if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_RIGHT)
+			game()->player.look_right = (keydata.action == MLX_PRESS);
+		else if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_LEFT)
+			game()->player.look_left = (keydata.action == MLX_PRESS);
 	}
 }
 
