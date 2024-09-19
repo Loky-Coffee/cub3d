@@ -10,8 +10,11 @@
 # include <string.h>
 # include <math.h>
 # include <stdbool.h>
+#include "./libft.h"
+#include "./MLX42.h"
+
+// muss am ende sein wegen prototypes die unsere funktionen benutzen
 #include "parsing.h"
 #include "render.h"
-#include "./libft.h"
 
 #endif

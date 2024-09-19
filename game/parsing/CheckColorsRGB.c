@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CheckColorsRGB.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 17:09:57 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:42:42 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
