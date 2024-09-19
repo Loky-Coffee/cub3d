@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 17:10:51 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 08:04:30 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ typedef union s_color
 	};
 } t_color;
 
+typedef struct s_pos
+{
+	int		north_txt;
+	int		south_txt;
+	int		west_txt;
+	int		east_txt;
+	int		floor_color_pos;
+	int		ceiling_color_pos;
+	int		map_pos_start;
+	int		map_pos_end;
+}t_pos;
+
 typedef struct s_p
 {
 	int		argc;
@@ -42,6 +54,8 @@ typedef struct s_p
 	char	east_texture[MAX_PATH_LENGTH];
 	t_color	floor;
 	t_color	ceiling;
+	t_pos	map_pos;
+
 }t_p;
 
 // main_parsin

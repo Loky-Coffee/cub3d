@@ -6,11 +6,36 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 04:16:13 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/18 15:41:13 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/19 08:05:31 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+// static int check_ident_pos(t_p *a)
+// {
+// 	size_t i;
+// 	size_t y;
+// 	size_t nbr;
+
+// 	i = 0;
+// 	y = 0;
+// 	nbr = 0;
+
+// 	while (a->map[y])
+// 	{
+// 		while(a->map[y][i] != '\0')
+// 		{
+// 			if (a->map[y][i] == )
+// 			{
+// 				/* code */
+// 			}
+
+// 		}
+// 		y++;
+// 	}
+
+// }
 
 int	check_map_identifier(t_p *a)
 {
@@ -33,5 +58,6 @@ int	check_map_identifier(t_p *a)
 			return (printf("ERROR:\n Ceiling color Identifier must be C"), 1);
 		i++;
 	}
+	// check_ident_pos(a);
 	return (0);
 }
