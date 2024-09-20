@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"cub3d.h": "c",
+		"parsing.h": "c",
+		"stdbool.h": "c",
+		"__node_handle": "c"
+	}
+}
