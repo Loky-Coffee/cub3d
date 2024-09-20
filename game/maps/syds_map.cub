@@ -3,8 +3,8 @@ SO ./game/maps/big_map.cub
 WE ./game/maps/big_map.cub
 EA ./game/maps/big_map.cub
 
-F 55, 255, 155
-C 255, 0, 255
+F 0, 155, 0
+C 100, 100, 100
 
 11111111111111111111  11111111111
 10000000010000000001  10000000001
