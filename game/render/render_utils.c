@@ -25,23 +25,22 @@ void clear_image(mlx_image_t *img)
 		while(++x < STD_WIDTH)
 		{
 			mlx_put_pixel(img, x, y, clr.color);
-			printf("pix = X = %d  ||  Y =  %d ", x, y);
 		}
 	}
 }
 
-void ren_draw_square(mlx_image_t *img, int x, int y, t_color clr)
+void ren_draw_square(mlx_image_t *img, int x, int y, int clr)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while(i < TILE - 1) // MINUS ONE FOR THE GITTERS MA FRIEND
+	while(i < TILE - 1)
 	{
 		j = 0;
 		while(j < TILE - 1)
 		{
-			mlx_put_pixel(img, x + i, y + j, clr.color);
+			mlx_put_pixel(img, x + i, y + j, clr);
 			j++;
 		}
 		i++;
@@ -52,29 +51,31 @@ void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH
 {
 	int i;
 	int j;
-	t_color wall;
-	t_color floor;
 
-	wall.color = 0x000000FF;
-	floor.color = 0xFFFFFFFF;
+	(void)row;
+	(void)col;
 
-	i = 0;	
-	while(i < row)
+	i = 0;
+	while(map[i])
 	{
 		j = 0;
-		while(j < col)
+		while(map[i][j])
 		{
-			if (map[i][j] == '1')
-				ren_draw_square(img, j * TILE, i * TILE, wall);
-			else if (map[i][j] != ' ')
-				ren_draw_square(img, j * TILE, i * TILE, floor);
+			if (map && map[i][j] == '1') 
+				ren_draw_square(img, j * TILE, i * TILE, game()->map->ceiling);
+			else if (map && map[i][j] == '0')
+				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
+			else if (map && (map[i][j] == 'N' || map[i][j] == 'S'))
+				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
+			else if (map && (map[i][j] == 'E' || map[i][j] == 'W'))
+				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
 			j++;
 		}
 		i++;
 	}
 }
 
-void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, t_color clr)
+void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, int clr)
 {
 	int x;
 	int y;
@@ -86,10 +87,10 @@ void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, t_col
 	err = 2 - 2 * radius;
 	while (x < 0)
 	{
-		mlx_put_pixel(img, x_core - x, y_core + y, clr.color);
-    	mlx_put_pixel(img, x_core - y, y_core - x, clr.color);
-        mlx_put_pixel(img, x_core + x, y_core - y, clr.color);
-        mlx_put_pixel(img, x_core + y, y_core + x, clr.color);
+		mlx_put_pixel(img, x_core - x, y_core + y, clr);
+    	mlx_put_pixel(img, x_core - y, y_core - x, clr);
+        mlx_put_pixel(img, x_core + x, y_core - y, clr);
+        mlx_put_pixel(img, x_core + y, y_core + x, clr);
 		rad = err;
 		if (rad <= y)
 			err += ++y * 2 + 1;

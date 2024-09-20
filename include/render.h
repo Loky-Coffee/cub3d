@@ -3,9 +3,9 @@
 
 //---------------- defines ----------------//
 
-# define STD_WIDTH	1024
-# define STD_HEIGHT 512
-# define FOV		90
+# define STD_WIDTH	2560
+# define STD_HEIGHT 1440
+# define FOV		60
 # define TILE		64
 # define PI			3.1415926535
 
@@ -56,9 +56,9 @@ int		initialise_game(t_map *map);
 //----UTILS----//
 t_game *game(void);
 void clear_image(mlx_image_t *img);
-void ren_draw_square(mlx_image_t *img, int x, int y, t_color clr);
+void ren_draw_square(mlx_image_t *img, int x, int y, int clr);
 void ren_draw_table(mlx_image_t *img, char **map, int row, int col);
-void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, t_color clr);
+void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, int clr);
 
 //---HOOKS
 void hook_move(mlx_key_data_t keydata, void *param);

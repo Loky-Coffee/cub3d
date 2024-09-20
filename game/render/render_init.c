@@ -33,21 +33,18 @@ void	initialise_map_size(void)
 
 int initialise_game(t_map *map)
 {
-	// game()->mlx = NULL;
-	// game()->img = NULL;
+	game()->mlx = NULL;
+	game()->img = NULL;
 	game()->map = map;
-	game()->player.pos.x = game()->map->player_pos_x; //UNINITIALISED MANN
-	game()->player.pos.y = game()->map->player_pos_y;
-	game()->player.angle = 0; //TODO: ANGEBEN DER START HIMMELSRICHTUNG
+	game()->player.pos.x = (double)game()->map->player_pos_x * TILE + (TILE / 2);
+	game()->player.pos.y = (double)game()->map->player_pos_y * TILE + (TILE / 2);
+	game()->player.angle = 0;
 	game()->player.move_up = false;
 	game()->player.move_down = false;
 	game()->player.move_left = false;
 	game()->player.move_right = false;
 	game()->player.look_right = false;
 	game()->player.look_left = false;
-
-	printf("x = %f\n", game()->player.pos.x);
-	printf("y = %f\n", game()->player.pos.y);
 
 	initialise_map_size();
 	if (initialise_mlx() != 0)
