@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 15:47:53 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/20 23:11:15 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ static int	convert_color_to_int(t_color *color, char *str, t_p *a)
 	if (get_next_color (&it, false, &color->blue, a) != 0)
 		return (1);
 	color->alpha = 255;
+
+	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	printf("\ncolor->red %d\n", color->red);
+	printf("color->green %d\n", color->green);
+	printf("color->blue %d\n", color->blue);
+	printf("color->alpha %d\n", color->alpha);
+	printf("color->color %d\n", color->color);
+	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	return (0);
 }
 

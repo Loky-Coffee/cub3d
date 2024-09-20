@@ -61,7 +61,7 @@ void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH
 		j = 0;
 		while(map[i][j])
 		{
-			if (map && map[i][j] == '1') 
+			if (map && map[i][j] == '1')
 				ren_draw_square(img, j * TILE, i * TILE, game()->map->ceiling);
 			else if (map && map[i][j] == '0')
 				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
