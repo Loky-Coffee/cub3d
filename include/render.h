@@ -5,10 +5,11 @@
 
 # define STD_WIDTH	2560
 # define STD_HEIGHT 1440
-# define FOV		60
 # define TILE		64
 # define PI			3.1415926535
 # define RA			2 * PI
+#define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
+#define FOV DEG_TO_RAD(90)
 
 //---------------- structs ----------------//
 
@@ -38,7 +39,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		*map;
 	// add more here
-	
+
 }				t_game;
 
 //---------------- functions ----------------//

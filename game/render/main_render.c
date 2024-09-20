@@ -14,35 +14,32 @@
 
 double normalize_angle(double angle)
 {
-	while (angle <= 0)
-		angle += RA;
-	while (angle > RA)
-		angle -= RA;
-	return (angle);
+    while (angle < 0)
+        angle += RA;
+    while (angle >= RA)
+        angle -= RA;
+    return angle;
 }
+
 
 void render_view(t_color clr)
 {
 	double start_angle;
-	double endin_angle;
 	double delta;
-	int i;
-	i = 0;
+	int i = 0;
+	int num_rays = STD_WIDTH;
 
 	game()->player.angle = normalize_angle(game()->player.angle);
-
-	start_angle = normalize_angle(game()->player.angle - (double)(FOV / 2));
-	endin_angle = normalize_angle(game()->player.angle + (double)(FOV / 2));
-	
-	delta = (double)FOV / STD_WIDTH; //TODO: change to actual SIZE of window
-
-	while(i < FOV)
+	start_angle = normalize_angle(game()->player.angle - FOV / 2);
+	delta = FOV / num_rays;
+	while (i < num_rays)
 	{
 		cast_ray_n_draw(game()->img, start_angle, clr, true);
 		start_angle = normalize_angle(start_angle + delta);
 		i++;
 	}
 }
+
 
 
 void render_game(void)
@@ -96,7 +93,7 @@ int	main_render(t_map *map)
 
 	if (initialise_game(map) != 0)
 		return (1);
-	
+
 	//========--TESTING--========//
 	main_hooks();
 
@@ -105,7 +102,7 @@ int	main_render(t_map *map)
 	mlx_loop(game()->mlx);
 
 	mlx_terminate(game()->mlx);
-	
+
 	// exit funciton
 	return (0);
 }
