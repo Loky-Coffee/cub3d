@@ -21,18 +21,18 @@
 
 typedef struct s_map
 {
-	char	map_name[255];
-	char	**map;
-	char	north_texture[MAX_PATH_LENGTH];
-	char	south_texture[MAX_PATH_LENGTH];
-	char	west_texture[MAX_PATH_LENGTH];
-	char	east_texture[MAX_PATH_LENGTH];
-	int		player_pos_x;
-	int		player_pos_y;
-	int		floor;
-	int		ceiling;
-	int		map_width;
-	int		map_height;
+	char		map_name[255];
+	char		**map;
+	char		north_texture[MAX_PATH_LENGTH];
+	char		south_texture[MAX_PATH_LENGTH];
+	char		west_texture[MAX_PATH_LENGTH];
+	char		east_texture[MAX_PATH_LENGTH];
+	int			player_pos_x;
+	int			player_pos_y;
+	u_int32_t	floor;
+	u_int32_t	ceiling;
+	int			map_width;
+	int			map_height;
 }t_map;
 
 #include "parsing.h"

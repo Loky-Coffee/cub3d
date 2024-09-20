@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 23:03:01 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/20 23:48:27 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef union s_color
 	u_int32_t		color;
 	struct
 	{
+		unsigned char	alpha;
 		unsigned char	red;
 		unsigned char	green;
 		unsigned char	blue;
-		unsigned char	alpha;
 	};
 }	t_color;
 
