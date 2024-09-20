@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 23:03:14 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:10:04 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	init_struct(t_p *a, int argc, char **argv)
 // 	printf("ceiling_color_pos: %d\n", a->map_pos.map_pos_end);
 // }
 
-int	main_parsing(int argc, char **argv, t_map *map, t_p *a)
+int	main_parsing(int argc, char **argv, t_map *map, t_p *a) // TODO: add check if arguments are there so if argc is 1 then exit or if it are too many
 {
 	init_struct(a, argc, argv);
 	check_map_name(a);

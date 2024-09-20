@@ -8,7 +8,7 @@ int wall_colission(double x, double y)
 	map_x = (int)x / TILE;
 	map_y = (int)y / TILE;
 	if ((map_x >= 0) && (map_x < 12) && (map_y >= 0) && map_y < 6) //TODO: 12 and 6 | width and height of the map 
-		return(game()->map[map_y][map_x] == '1'); //TODO: change map here to map from aris part
+		return(game()->map->map[map_y][map_x] == '1');
 	return (1);
 }
 
