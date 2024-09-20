@@ -30,29 +30,29 @@ int main(int argc, char **argv)
 
 
 
-	// int i = 0;
-	// printf("-----------------------------------------------------------\n");
-	// while (map.map[i])
-	// 	printf("map->map: %s\n", map.map[i++]);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->map_name: %s\n", map.map_name);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->north_texture: %s\n", map.north_texture);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->south_texture: %s\n", map.south_texture);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->west_texture: %s\n", map.west_texture);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->east_texture: %s\n", map.east_texture);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->player_pos_x: %d\n", map.player_pos_x);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->player_pos_y: %d\n", map.player_pos_y);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->floor: %d\n", map.floor);
-	// printf("-----------------------------------------------------------\n");
-	// printf("map->ceiling: %d\n", map.ceiling);
-	// printf("-----------------------------------------------------------\n");
+	int i = 0;
+	printf("-----------------------------------------------------------\n");
+	while (map.map[i])
+		printf("map->map: %s\n", map.map[i++]);
+	printf("-----------------------------------------------------------\n");
+	printf("map->map_name: %s\n", map.map_name);
+	printf("-----------------------------------------------------------\n");
+	printf("map->north_texture: %s\n", map.north_texture);
+	printf("-----------------------------------------------------------\n");
+	printf("map->south_texture: %s\n", map.south_texture);
+	printf("-----------------------------------------------------------\n");
+	printf("map->west_texture: %s\n", map.west_texture);
+	printf("-----------------------------------------------------------\n");
+	printf("map->east_texture: %s\n", map.east_texture);
+	printf("-----------------------------------------------------------\n");
+	printf("map->player_pos_x: %d\n", map.player_pos_x);
+	printf("-----------------------------------------------------------\n");
+	printf("map->player_pos_y: %d\n", map.player_pos_y);
+	printf("-----------------------------------------------------------\n");
+	printf("map->floor: %d\n", map.floor);
+	printf("-----------------------------------------------------------\n");
+	printf("map->ceiling: %d\n", map.ceiling);
+	printf("-----------------------------------------------------------\n");
 
 
 	if (main_render(&map) != 0)
