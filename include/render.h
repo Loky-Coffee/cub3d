@@ -8,6 +8,7 @@
 # define FOV		60
 # define TILE		64
 # define PI			3.1415926535
+# define RA			2 * PI
 
 //---------------- structs ----------------//
 

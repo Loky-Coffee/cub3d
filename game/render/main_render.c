@@ -9,24 +9,52 @@
 
 
 //					---TODO:---					//
-	//TODO: add connection to main struct
+	//TODO: CHANGE ALL DOBLES TO FLOATS
+
+
+double normalize_angle(double angle)
+{
+	while (angle <= 0)
+		angle += RA;
+	while (angle >= RA)
+		angle -= RA;
+	return (angle);
+}
+
+void render_view(t_color clr)
+{
+	double start_angle;
+	double endin_angle;
+	double delta;
+
+	game()->player.angle = normalize_angle(game()->player.angle);
+
+	start_angle = normalize_angle(game()->player.angle - (double)(FOV / 2));
+	endin_angle = normalize_angle(game()->player.angle + (double)(FOV / 2));
+	
+	delta = (double)FOV / STD_WIDTH; //TODO: change to actual SIZE of window
+
+	while(start_angle < endin_angle || (endin_angle < start_angle && start_angle < RA))
+	{
+		cast_ray_n_draw(game()->img, start_angle, clr, true);
+		start_angle = normalize_angle(start_angle + delta);
+	}
+}
 
 
 void render_game(void)
 {
+	int i;
 	t_color clr;
-	int i = 7;
-	
+
+	i = 4;
 	clr.color = 0x00FF00FF;
-
 	clear_image(game()->img);
-
 	ren_draw_table(game()->img, game()->map->map,  game()->map->map_height, game()->map->map_width); // FILL IN ACTUAL HEIGHT AND WIDTH
 
 	while(i != 0)
 		ren_draw_circle(game()->img, game()->player.pos.x, game()->player.pos.y, i--, clr.color);
-
-	cast_ray_n_draw(game()->img, game()->player.angle, clr, true);
+	render_view(clr);
 }
 
 void render_movement(void)
