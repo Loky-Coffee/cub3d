@@ -14,9 +14,9 @@
 
 double normalize_angle(double angle)
 {
-	while (angle <= 0)
+	if (angle <= 0)
 		angle += RA;
-	while (angle >= RA)
+	if (angle > RA)
 		angle -= RA;
 	return (angle);
 }
