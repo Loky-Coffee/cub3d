@@ -6,18 +6,24 @@ void hook_move(mlx_key_data_t keydata, void *param)
 
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_RELEASE)
 	{
-		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_W)
+		if (keydata.key == MLX_KEY_W)
 			game()->player.move_up = (keydata.action == MLX_PRESS);
-		else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_A)
+		else if (keydata.key == MLX_KEY_A)
 			game()->player.move_left = (keydata.action == MLX_PRESS);
-		else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_S)
+		else if (keydata.key == MLX_KEY_S)
 			game()->player.move_down = (keydata.action == MLX_PRESS);
-		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_D)
+		else if (keydata.key == MLX_KEY_D)
 			game()->player.move_right = (keydata.action == MLX_PRESS);
-		else if (keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_RIGHT)
+		else if (keydata.key == MLX_KEY_RIGHT)
 			game()->player.look_right = (keydata.action == MLX_PRESS);
-		else if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_LEFT)
+		else if (keydata.key == MLX_KEY_LEFT)
 			game()->player.look_left = (keydata.action == MLX_PRESS);
+		else if (keydata.key == MLX_KEY_ESCAPE)
+			if (game() && game()->mlx)
+			{
+				mlx_terminate(game()->mlx);
+				exit(EXIT_SUCCESS);
+			}
 	}
 }
 
