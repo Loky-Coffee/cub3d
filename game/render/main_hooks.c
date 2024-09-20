@@ -25,6 +25,7 @@ void hook_move(mlx_key_data_t keydata, void *param)
 void main_hooks()
 {
 	mlx_key_hook(game()->mlx, hook_move, NULL);
+
 	mlx_loop_hook(game()->mlx, render_loop, NULL);
 
 	// initalise mouse

@@ -30,11 +30,11 @@ int main(int argc, char **argv)
 
 
 
-	// int i = 0;
-	// printf("-----------------------------------------------------------\n");
-	// while (map.map[i])
-	// 	printf("map->map: %s\n", map.map[i++]);
-	// printf("-----------------------------------------------------------\n");
+	int i = 0;
+	printf("-----------------------------------------------------------\n");
+	while (map.map[i])
+		printf("map->map: %s\n", map.map[i++]);
+	printf("-----------------------------------------------------------\n");
 	// printf("map->map_name: %s\n", map.map_name);
 	// printf("-----------------------------------------------------------\n");
 	// printf("map->north_texture: %s\n", map.north_texture);
