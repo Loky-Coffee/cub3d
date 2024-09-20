@@ -14,9 +14,9 @@
 
 double normalize_angle(double angle)
 {
-	if (angle <= 0)
+	while (angle <= 0)
 		angle += RA;
-	if (angle > RA)
+	while (angle > RA)
 		angle -= RA;
 	return (angle);
 }
@@ -26,6 +26,8 @@ void render_view(t_color clr)
 	double start_angle;
 	double endin_angle;
 	double delta;
+	int i;
+	i = 0;
 
 	game()->player.angle = normalize_angle(game()->player.angle);
 
@@ -34,10 +36,11 @@ void render_view(t_color clr)
 	
 	delta = (double)FOV / STD_WIDTH; //TODO: change to actual SIZE of window
 
-	while(start_angle < endin_angle || (endin_angle < start_angle && start_angle < RA))
+	while(i < FOV)
 	{
 		cast_ray_n_draw(game()->img, start_angle, clr, true);
 		start_angle = normalize_angle(start_angle + delta);
+		i++;
 	}
 }
 
