@@ -19,7 +19,6 @@
 
 // muss am ende sein wegen prototypes die unsere funktionen benutzen
 
-
 typedef struct s_map
 {
 	char	map_name[255];
@@ -32,6 +31,8 @@ typedef struct s_map
 	int		player_pos_y;
 	int		floor;
 	int		ceiling;
+	int		map_width;
+	int		map_height;
 }t_map;
 
 #include "parsing.h"

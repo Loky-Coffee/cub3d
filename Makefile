@@ -6,7 +6,7 @@
 #    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/19 01:28:33 by csteudin         ###   ########.fr        #
+#    Updated: 2024/09/20 18:27:17 by csteudin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)%.o, $(SRC)) # Objektdateien
 NAME = cub3D # Name des Programms
 
 # Regeln
-all: $(NAME)
+all: $(LIB_MLX) $(NAME)
 
-$(NAME): libft $(OBJ)  $(LIB_MLX)
+$(NAME): libft $(OBJ) $(LIB_MLX)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX)
 	@echo "Build abgeschlossen: $(NAME)"
 

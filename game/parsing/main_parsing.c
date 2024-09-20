@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 19:59:15 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:51:36 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_struct(t_p *a, int argc, char **argv)
 	a->map = NULL;
 	a->argc = argc;
 	a->argv = argv;
-	a->map_name = argv[1];
+	a->map_name = argv[1]; 
 	a->map_fd = 0;
 	a->floor.alpha = 0;
 	a->floor.red = 0;
@@ -80,7 +80,7 @@ static void	init_struct(t_p *a, int argc, char **argv)
 // 	printf("ceiling_color_pos: %d\n", a->map_pos.map_pos_end);
 // }
 
-int	main_parsing(int argc, char **argv, t_map *map, t_p *a)
+int	main_parsing(int argc, char **argv, t_map *map, t_p *a) // TODO: add check if arguments are there so if argc is 1 then exit or if it are too many 
 {
 	init_struct(a, argc, argv);
 	check_map_name(a);

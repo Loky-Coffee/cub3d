@@ -1,7 +1,7 @@
 #ifndef RENDER_H
 # define RENDER_H
 
-//---------------- functions ----------------//
+//---------------- defines ----------------//
 
 # define STD_WIDTH	1024
 # define STD_HEIGHT 512
@@ -9,7 +9,7 @@
 # define TILE		64
 # define PI			3.1415926535
 
-//---------------- typedefs ----------------//
+//---------------- structs ----------------//
 
 typedef struct s_vec_2
 {
@@ -35,7 +35,7 @@ typedef struct s_game
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_player	player;
-	char		**map;
+	t_map		*map;
 	// add more here
 	
 }				t_game;
@@ -43,13 +43,15 @@ typedef struct s_game
 //---------------- functions ----------------//
 
 //---MAIN
+int main_render(t_map *map);
 void render_game(void);
 void render_movement(void);
 void render_loop(void *param);
-int main_render(void);
 
 //---INIT
-int initialise_game(void);
+int		initialise_mlx(void);
+void	initialise_map_size(void);
+int		initialise_game(t_map *map);
 
 //----UTILS----//
 t_game *game(void);

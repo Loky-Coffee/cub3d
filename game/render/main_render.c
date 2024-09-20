@@ -12,27 +12,6 @@
 	//TODO: add connection to main struct
 
 
-static char **create_map(void) //TODO: only for testing
- {
-    int rows = 6;
-    char **map;
-
-    // Speicherplatz für Zeilen reservieren
-    map = (char **)malloc(rows * sizeof(char *));
-    if (!map)
-        return NULL;
-
-    // Zeilen manuell befüllen
-    map[0] = strdup("111111111111");
-    map[1] = strdup("100000000001");
-    map[2] = strdup("111110000001");
-    map[3] = strdup("100000011111");
-    map[4] = strdup("100000000001");
-    map[5] = strdup("111111111111");
-
-    return map;
-}
-
 void render_game(void)
 {
 	t_color clr;
@@ -40,7 +19,7 @@ void render_game(void)
 	
 	clr.color = 0xFF0000FF;
 
-	ren_draw_table(game()->img, game()->map, 6, 12); // FILL IN ACTUAL HEIGHT AND WIDTH
+	ren_draw_table(game()->img, game()->map->map,  game()->map->map_height, game()->map->map_width); // FILL IN ACTUAL HEIGHT AND WIDTH
 	while(i != 0)
 		ren_draw_circle(game()->img, game()->player.pos.x, game()->player.pos.y, i--, clr);
 
@@ -65,7 +44,6 @@ void render_movement(void)
 		game()->player.angle += 2 * PI;
 	if (game()->player.angle > 2 * PI)
 		game()->player.angle -= 2 * PI;
-	printf("%f\n", game()->player.angle);
 }
 
 // void cast_ray()
@@ -73,25 +51,25 @@ void render_movement(void)
 void render_loop(void *param)
 {
 	(void)param;
-
 	render_movement();
 	render_game();
 }
 
-int	main_render(void)
+int	main_render(t_map *map)
 {
 	t_color clr;
 	clr.color = 0xFF0000FF;
 
-	if (initialise_game())
-		return (1); //TODO: error handling
-	game()->map = create_map();
+	if (initialise_game(map) != 0)
+		return (1);
 	
+
 	//========--TESTING--========//
 	main_hooks();
 	//===========================//
 
 	mlx_loop(game()->mlx);
+
 	mlx_terminate(game()->mlx);
 	// exit funciton
 	return (0);
