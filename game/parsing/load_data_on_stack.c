@@ -6,16 +6,16 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:24:45 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/19 19:58:20 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/21 01:11:09 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void erase_oldmap(t_p *a)
+void	erase_oldmap(t_p *a)
 {
-	int oldpos;
-	int newpos;
+	int	oldpos;
+	int	newpos;
 
 	oldpos = a->map_pos.map_pos_start;
 	newpos = 0;
@@ -28,22 +28,13 @@ void erase_oldmap(t_p *a)
 	a->map[newpos] = NULL;
 }
 
-int	load_data_on_stack(t_p *src, t_map *dest)
+static void	load_map_on_stack(t_p *src, t_map *dest)
 {
-	int i;
-	int x;
+	int	i;
+	int	x;
 
 	i = 0;
 	x = 0;
-	dest->ceiling = src->ceiling.color;
-	dest->floor = src->floor.color;
-	dest->player_pos_x = src->map_pos.player_x;
-	dest->player_pos_y = src->map_pos.player_y;
-	ft_strlcpy(dest->east_texture, src->east_texture, sizeof(src->east_texture));
-	ft_strlcpy(dest->north_texture, src->north_texture, sizeof(src->north_texture));
-	ft_strlcpy(dest->south_texture, src->south_texture, sizeof(src->south_texture));
-	ft_strlcpy(dest->west_texture, src->west_texture, sizeof(src->west_texture));
-	ft_strlcpy(dest->map_name, src->map_name, sizeof(src->map_name));
 	while (src->map[i])
 		i++;
 	while (src->map[x])
@@ -56,5 +47,23 @@ int	load_data_on_stack(t_p *src, t_map *dest)
 	dest->map[i] = NULL;
 	if (src->map)
 		free_split(src->map);
+}
+
+int	load_data_on_stack(t_p *src, t_map *dest)
+{
+	dest->ceiling = src->ceiling.color;
+	dest->floor = src->floor.color;
+	dest->player_pos_x = src->map_pos.player_x;
+	dest->player_pos_y = src->map_pos.player_y;
+	ft_strlcpy(dest->east_texture, src->east_texture, \
+	sizeof(src->east_texture));
+	ft_strlcpy(dest->north_texture, src->north_texture, \
+	sizeof(src->north_texture));
+	ft_strlcpy(dest->south_texture, src->south_texture, \
+	sizeof(src->south_texture));
+	ft_strlcpy(dest->west_texture, src->west_texture, \
+	sizeof(src->west_texture));
+	ft_strlcpy(dest->map_name, src->map_name, sizeof(src->map_name));
+	load_map_on_stack(src, dest);
 	return (0);
 }
