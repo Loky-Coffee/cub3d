@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/20 23:13:39 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/21 02:02:22 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,8 @@ int	error_exit(t_p *a, char *error_msg, int error_code)
 	exit(error_code);
 }
 
-static void	init_struct(t_p *a, int argc, char **argv)
+static void	init_t_pos_struct(t_p *a)
 {
-	a->map = NULL;
-	a->argc = argc;
-	a->argv = argv;
-	a->map_name = argv[1];
-	a->map_fd = 0;
-	a->floor.alpha = 0;
-	a->floor.red = 0;
-	a->floor.blue = 0;
-	a->floor.green = 0;
-	a->ceiling.alpha = 0;
-	a->ceiling.red = 0;
-	a->ceiling.blue = 0;
-	a->ceiling.green = 0;
-	ft_memset(a->north_texture, '\0', sizeof(a->north_texture));
-	ft_memset(a->south_texture, '\0', sizeof(a->south_texture));
-	ft_memset(a->west_texture, '\0', sizeof(a->west_texture));
-	ft_memset(a->east_texture, '\0', sizeof(a->east_texture));
 	a->map_pos.north_txt = -1;
 	a->map_pos.south_txt = -1;
 	a->map_pos.west_txt = -1;
@@ -49,59 +32,48 @@ static void	init_struct(t_p *a, int argc, char **argv)
 	a->map_pos.map_pos_end = -1;
 }
 
-// void	print_map(t_p *a)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (a->map[i])
-// 		printf("%s\n", a->map[i++]);
-// 	printf("--------------------------------------------------------------\n");
-// 	printf("north_texture PATH: %s\n", a->north_texture);
-// 	printf("south_texture PATH: %s\n", a->south_texture);
-// 	printf("west_texture PATH: %s\n", a->west_texture);
-// 	printf("east_texture PATH: %s\n", a->east_texture);
-// 	printf("--------------------------------------------------------------\n");
-// 	printf("Floor red:%d, green:%d, blue:%d,  alpha:%d, Color:%08X \n", \
-// 			a->floor.red, a->floor.green, a->floor.blue, a->floor.alpha, \
-// 			a->floor.color);
-// 	printf("--------------------------------------------------------------\n");
-// 	printf("Ceiling red:%d, green:%d, blue:%d,  alpha:%d, Color:%08X \n", \
-// 			a->ceiling.red, a->ceiling.green, a->ceiling.blue, \
-// 			a->ceiling.alpha, a->ceiling.color);
-// 	printf("--------------------------------------------------------------\n");
-// 	printf("north_pos: %d\n", a->map_pos.north_txt);
-// 	printf("south_txt: %d\n", a->map_pos.south_txt);
-// 	printf("west_txt: %d\n", a->map_pos.west_txt);
-// 	printf("east_txt: %d\n", a->map_pos.east_txt);
-// 	printf("floor_color_pos: %d\n", a->map_pos.floor_color_pos);
-// 	printf("ceiling_color_pos: %d\n", a->map_pos.ceiling_color_pos);
-// 	printf("ceiling_color_pos: %d\n", a->map_pos.map_pos_start);
-// 	printf("ceiling_color_pos: %d\n", a->map_pos.map_pos_end);
-// }
-
-int	main_parsing(int argc, char **argv, t_map *map, t_p *a) // TODO: add check if arguments are there so if argc is 1 then exit or if it are too many
+static void	init_t_color_struct(t_p *a)
 {
-	init_struct(a, argc, argv);
-	check_map_name(a);
-	open_map(a);
-	read_map(a);
-	if (check_map_identifier(a) != 0)
-		return (free_split(a->map), 1);
-	if (check_path_to_texture(a) != 0)
-		return (free_split(a->map), 1);
-	if (init_colors(a) != 0)
-		return (free_split(a->map), 1);
+	a->floor.alpha = 0;
+	a->floor.red = 0;
+	a->floor.blue = 0;
+	a->floor.green = 0;
+	a->ceiling.alpha = 0;
+	a->ceiling.red = 0;
+	a->ceiling.blue = 0;
+	a->ceiling.green = 0;
+}
+
+static void	init_t_p_struct(t_p *a, int argc, char **argv)
+{
+	a->argc = argc;
+	a->argv = argv;
+	a->map_fd = 0;
+	a->map_name = argv[1];
+	a->map = NULL;
+	a->buff_map = NULL;
+	a->map_not_valid = false;
+	a->start_find = false;
+	ft_memset(a->north_texture, '\0', sizeof(a->north_texture));
+	ft_memset(a->south_texture, '\0', sizeof(a->south_texture));
+	ft_memset(a->west_texture, '\0', sizeof(a->west_texture));
+	ft_memset(a->east_texture, '\0', sizeof(a->east_texture));
+}
+
+int	main_parsing(int argc, char **argv, t_map *map, t_p *a)
+{
+	init_t_p_struct(a, argc, argv);
+	init_t_pos_struct(a);
+	init_t_color_struct(a);
+	load_map(a);
+	check_map_identifier(a);
+	load_texture_path(a);
+	load_colors(a);
 	find_map_start(a);
 	erase_oldmap(a);
 	find_char_position(a);
 	search_utils(a);
-	// print_map(a);
 	if (load_data_on_stack(a, map) != 0)
 		return (free_split(a->map), 1);
 	return (0);
 }
-	// if (!check_map_horizondal(&a))
-	// 	return (free_split(a.map), 1);
-	// if (!check_maps_vertikal(&a))
-	// 	return (free_split(a.map), 1);

@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/20 23:48:27 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/21 02:11:38 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef struct s_p
 	int		map_fd;
 	char	*map_name;
 	char	**map;
+	char	**buff_map;
+	bool	map_not_valid;
+	bool	start_find;
 	char	north_texture[MAX_PATH_LENGTH];
 	char	south_texture[MAX_PATH_LENGTH];
 	char	west_texture[MAX_PATH_LENGTH];
@@ -70,23 +73,29 @@ typedef struct s_p
 }	t_p;
 
 // main_parsin
-int	main_parsing(int argc, char **argv, t_map *map, t_p *a);
+int		main_parsing(int argc, char **argv, t_map *map, t_p *a);
+int		error_exit(t_p *a, char *error_msg, int error_code);
 
 // load_map
-void	check_map_name(t_p *a);
-int		open_map(t_p *a);
-int		read_map(t_p *a);
-void	print_map(t_p *a);
+void	load_map(t_p *a);
 
-// check_map_valid
-int		check_map_identifier(t_p *a);
-int		init_colors(t_p *a);
-int		check_path_to_texture(t_p *a);
-int		error_exit(t_p *a, char *error_msg, int error_code);
+//checkcolorsRGB.c
+void	load_colors(t_p *a);
+
+//CheckIdentifier.c
+void	check_map_identifier(t_p *a);
+
+//load_texture_path.c
+void		load_texture_path(t_p *a);
+
+// check_map.c
 void	find_map_start(t_p *a);
-void	erase_oldmap(t_p *a);
-int		load_data_on_stack(t_p *src, t_map *dest);
 void	find_char_position(t_p *a);
 void	search_utils(t_p *a);
+
+//load_data_on_stack.c
+void	erase_oldmap(t_p *a);
+int		load_data_on_stack(t_p *src, t_map *dest);
+
 
 #endif
