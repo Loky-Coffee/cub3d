@@ -32,9 +32,8 @@ void render_minimap(void)
 	x = 4;
 	clr.color = 0x00FF00FF;
 
-	clear_image(game()->img); // CHANGE TO MINIMAP X AND Y
 	
-	ren_draw_table(game()->img, game()->map->map,  game()->map->map_height, game()->map->map_width); // FILL IN ACTUAL HEIGHT AND WIDTH
+	ren_draw_table(game()->img, game()->map->map,  game()->map->map_height / 30, game()->map->map_width / 30); // FILL IN ACTUAL HEIGHT AND WIDTH
 	
 	while(x != 0)
 		ren_draw_circle(game()->img, game()->player.pos.x, game()->player.pos.y, x--, clr.color);
@@ -70,7 +69,7 @@ void render_movement(void)
 		game()->player.angle -= 2 * PI;
 }
 
-void render_wall(double distance, int x_pos)
+void render_wall(double distance, int x_pos, double ray_angle)
 {
 	int wall_height;
 	int y_start;
@@ -81,7 +80,7 @@ void render_wall(double distance, int x_pos)
 	y_pos = 0;
 
 
-	wall_height = (int)(STD_HEIGHT / (distance + 0.01));
+	wall_height = (int)(TILE * STD_HEIGHT / (distance * cos(ray_angle - game()->player.angle)));
 	if (wall_height < 15)
 		wall_height = 15;
 	y_start = (STD_HEIGHT / 2) - (wall_height / 2);
@@ -114,7 +113,7 @@ void render_view(void)
 	{
 		distance = cast_ray_n_draw(game()->img, start_angle, 0, false);
 		start_angle = normalize_angle(start_angle + delta);
-		render_wall(distance, i);
+		render_wall(distance, i, start_angle);
 		i++;
 	}
 }
@@ -122,7 +121,7 @@ void render_view(void)
 void render_game(void)
 {
 	render_view();
-	// render_minimap();
+	render_minimap();
 	//render crosshair
 }
 
