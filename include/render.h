@@ -9,7 +9,7 @@
 # define PI			3.1415926535
 # define RA			2 * PI
 #define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
-#define FOV DEG_TO_RAD(90)
+#define FOV DEG_TO_RAD(60)
 
 //---------------- structs ----------------//
 
@@ -68,7 +68,7 @@ void main_hooks();
 
 //---RAYS
 int wall_colission(double x, double y);
-void cast_ray_n_draw(mlx_image_t *img, double ray_angle, t_color clr, bool draw);
+double cast_ray_n_draw(mlx_image_t *img, double ray_angle, int clr, bool draw);
 
 
 #endif
