@@ -15,15 +15,6 @@
 //					---TODO:---					//
 	//TODO: CHANGE ALL DOBLES TO FLOATS
 
-double normalize_angle(double angle)
-{
-	while (angle < 0)
-		angle += RA;
-	while (angle >= RA)
-		angle -= RA;
-	return angle;
-}
-
 void render_minimap(void)
 {
 	t_color clr;
@@ -96,7 +87,7 @@ void render_wall(double distance, int x_pos, double ray_angle)
 	int y_start;
 	int y_end;
 	int y_pos;
-	u_int32_t clr = 0xFFFFFFFF; //CHANGE LATER
+	u_int32_t clr = 0x00000000; //CHANGE LATER
 
 	y_pos = 0;
 	wall_height = (int)(TILE * STD_HEIGHT / (distance * cos(ray_angle - game()->player.angle)));
@@ -120,7 +111,7 @@ void render_wall(double distance, int x_pos, double ray_angle)
 
 void render_view(void)
 {
-	double distance;
+	double distance; //TODO: OPTIMIZE THIS SHIT
 	double start_angle;
 	double delta;
 	int i = 0;
@@ -140,8 +131,8 @@ void render_view(void)
 
 void render_game(void)
 {
-	// render_view();
-	render_minimap();
+	render_view();
+	// render_minimap();
 	//render crosshair
 }
 
@@ -154,13 +145,11 @@ void render_loop(void *param)
 
 int	main_render(t_map *map)
 {
-
 	if (initialise_game(map) != 0)
 		return (1);
 
 	//========--TESTING--========//
 	main_hooks();
-
 	mlx_loop(game()->mlx);
 	mlx_terminate(game()->mlx);
 	//===========================//

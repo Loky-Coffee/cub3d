@@ -33,6 +33,7 @@ typedef struct s_map
 	u_int32_t	ceiling;
 	int			map_width;
 	int			map_height;
+	//add actual open png in mlx
 }t_map;
 
 #include "parsing.h"

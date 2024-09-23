@@ -68,12 +68,15 @@ void ren_draw_table(mlx_image_t *img, char **map, int row, int col);
 void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, int clr);
 
 //---HOOKS
-void hook_move(mlx_key_data_t keydata, void *param);
+void hook_keys(mlx_key_data_t keydata, void *param);
 void main_hooks();
 
 //---RAYS
 int wall_colission(double x, double y);
 double cast_ray_n_draw(mlx_image_t *img, double ray_angle, int clr, bool draw);
+
+//---CALC
+double normalize_angle(double angle);
 
 
 #endif

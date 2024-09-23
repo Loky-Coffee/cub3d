@@ -1,6 +1,6 @@
 #include "../../include/cub3d.h"
 
-void hook_move(mlx_key_data_t keydata, void *param)
+void hook_keys(mlx_key_data_t keydata, void *param)
 {
 	(void)param;
 
@@ -23,18 +23,27 @@ void hook_move(mlx_key_data_t keydata, void *param)
 			{
 				mlx_terminate(game()->mlx);
 				exit(EXIT_SUCCESS);
+				//TODO: add ft_exit function here
 			}
 	}
 }
 
+// void hook_mouse_cursor(double xpos, double ypos, void * param)
+// {
+// 	(void)param;
+// 	(void)ypos;
+// 	static xdelta;
+
+// 	mlx_mouse_get_delta(game()->mlx, xpos, ypos);
+
+// 	game()->player.angle = normalize_angle(game()->player.angle + (xpos / 100));
+// }
 
 void main_hooks()
 {
-	mlx_key_hook(game()->mlx, hook_move, NULL);
+	// mlx_cursor_hook(game()->mlx, hook_mouse_cursor, NULL); //TODO: IMPLEMENT AFTER BONUS
+	
+	mlx_key_hook(game()->mlx,hook_keys, NULL);
 
 	mlx_loop_hook(game()->mlx, render_loop, NULL);
-
-	// initalise mouse
-	//initialise exit keys
-	// initiales maybe some extra stuff :)
 }
