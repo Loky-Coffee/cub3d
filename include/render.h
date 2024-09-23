@@ -1,3 +1,6 @@
+
+
+
 #ifndef RENDER_H
 # define RENDER_H
 
@@ -8,8 +11,9 @@
 # define TILE		64
 # define PI			3.1415926535
 # define RA			2 * PI
-#define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
-#define FOV DEG_TO_RAD(60)
+# define SPEED		3.33
+# define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
+# define FOV DEG_TO_RAD(60)
 
 //---------------- structs ----------------//
 
@@ -32,6 +36,7 @@ typedef struct s_player
 	// add more here
 
 }				t_player;
+
 typedef struct s_game
 {
 	mlx_t		*mlx;
