@@ -45,6 +45,16 @@ int initialise_game(t_map *map)
 	game()->player.move_right = false;
 	game()->player.look_right = false;
 	game()->player.look_left = false;
+	game()->tex = malloc(sizeof(t_texture));
+	game()->tex->north = NULL;
+	game()->tex->south = NULL;
+	game()->tex->west = NULL;
+	game()->tex->east = NULL;
+	game()->tex->north_img = NULL;
+	game()->tex->south_img = NULL;
+	game()->tex->west_img = NULL;
+	game()->tex->east_img = NULL;
+
 
 	initialise_map_size();
 	if (initialise_mlx() != 0)

@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
+#    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/20 18:27:17 by csteudin         ###   ########.fr        #
+#    Updated: 2024/09/24 09:24:19 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc # Compiler
-CFLAGS = -Wall -Wextra -Werror -Iinclude -g # Compiler-Flags, nur für das Kompilieren
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g -fsanitize=address# Compiler-Flags, nur für das Kompilieren
 LIB_MLX = ./include/libmlx42.a # Statische Bibliothek MLX42
 LIBFT = ./include/libft.a # Statische Bibliothek libft
 MLX = ./include/libmlx42.a -lglfw # Verlinken von MLX42 und GLFW

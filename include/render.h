@@ -11,9 +11,9 @@
 # define TILE		64
 # define PI			3.1415926535
 # define RA			2 * PI
-# define SPEED		3.33
+# define SPEED		7.00
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
-# define FOV DEG_TO_RAD(60)
+# define FOV DEG_TO_RAD(80)
 
 //---------------- structs ----------------//
 
@@ -26,25 +26,36 @@ typedef struct s_vec_2
 typedef struct s_player
 {
 	t_vec_2 pos;
-	double angle;
-	bool move_up;
-	bool move_down;
-	bool move_left;
-	bool move_right;
-	bool look_right;
-	bool look_left;
-	// add more here
-
+	double			angle;
+	bool			move_up;
+	bool			move_down;
+	bool			move_left;
+	bool			move_right;
+	bool			look_right;
+	bool			look_left;
+	double			ray_x;
+	double			ray_y;
 }				t_player;
+
+typedef struct s_texture
+{
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*west;
+	mlx_texture_t	*east;
+	mlx_image_t		*north_img;
+	mlx_image_t		*south_img;
+	mlx_image_t		*west_img;
+	mlx_image_t		*east_img;
+}				t_texture;
 
 typedef struct s_game
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_player	player;
-	t_map		*map;
-	// add more here
-
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	t_player		player;
+	t_map			*map;
+	t_texture		*tex;
 }				t_game;
 
 //---------------- functions ----------------//
@@ -77,6 +88,8 @@ double cast_ray_n_draw(mlx_image_t *img, double ray_angle, int clr, bool draw);
 
 //---CALC
 double normalize_angle(double angle);
+
+int load_textures(void);
 
 
 #endif

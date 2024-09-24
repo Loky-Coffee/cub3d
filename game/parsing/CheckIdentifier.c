@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 04:16:13 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 01:55:59 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/24 01:17:47 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,18 @@ static void	check_color_pos(t_p *a)
 static void	check_texture_pos(t_p *a)
 {
 	int	y;
-	int	i;
 
 	y = 0;
 	while (a->map && a->map[y])
 	{
-		i = 0;
-		while (a->map && a->map[y] && a->map[y][i] != '\0')
-		{
-			if (a->map[y][i] == 'O' && a->map[y][i - 1] == 'N')
-				a->map_pos.north_txt = y;
-			else if (a->map[y][i] == 'O' && a->map[y][i - 1] == 'S')
-				a->map_pos.south_txt = y;
-			else if (a->map[y][i] == 'E' && a->map[y][i - 1] == 'W')
-				a->map_pos.west_txt = y;
-			else if (a->map[y][i] == 'A' && a->map[y][i - 1] == 'E')
-				a->map_pos.east_txt = y;
-			i++;
-		}
+		if (ft_strncmp(a->map[y], "NO ", 3) == 0)
+			a->map_pos.north_txt = y;
+		else if (ft_strncmp(a->map[y], "SO ", 3) == 0)
+			a->map_pos.south_txt = y;
+		else if (ft_strncmp(a->map[y], "WE ", 3) == 0)
+			a->map_pos.west_txt = y;
+		else if (ft_strncmp(a->map[y], "EA ", 3) == 0)
+			a->map_pos.east_txt = y;
 		y++;
 	}
 	if (a->map_pos.north_txt == -1 || a->map_pos.south_txt == -1 || \
