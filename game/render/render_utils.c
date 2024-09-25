@@ -12,6 +12,8 @@ void clear_image(mlx_image_t *img)
 	int x;
 	int y;
 	t_color clr;
+	u_int32_t width = game()->img->width;
+	u_int32_t height = game()->img->height;
 
 	clr.red = 0;
 	clr.green = 0;
@@ -19,10 +21,10 @@ void clear_image(mlx_image_t *img)
 	clr.alpha = 255;
 
 	y = -1;
-	while(++y < STD_HEIGHT)
+	while(++y < (int)height)
 	{
 		x = -1;
-		while(++x < STD_WIDTH)
+		while(++x < (int)width)
 		{
 			mlx_put_pixel(img, x, y, clr.color);
 		}
@@ -62,13 +64,13 @@ void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH
 		while(map[i][j])
 		{
 			if (map && map[i][j] == '1')
-				ren_draw_square(img, j * TILE, i * TILE, game()->map->ceiling);
+				ren_draw_square(img, j * TILE, i * TILE, 0x00000000);
 			else if (map && map[i][j] == '0')
-				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
+				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
 			else if (map && (map[i][j] == 'N' || map[i][j] == 'S'))
-				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
+				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
 			else if (map && (map[i][j] == 'E' || map[i][j] == 'W'))
-				ren_draw_square(img, j * TILE, i * TILE, game()->map->floor);
+				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
 			j++;
 		}
 		i++;

@@ -28,7 +28,14 @@ void hook_keys(mlx_key_data_t keydata, void *param)
 	}
 }
 
-// void hook_mouse_cursor(double xpos, double ypos, void * param)
+void hook_resize(int32_t width, int32_t height, void* param)
+{
+	(void)param;
+	mlx_resize_image(game()->img, width, height);
+	mlx_image_to_window(game()->mlx, game()->img, 0, 0);
+}
+
+// void hook_mouse_cursor(float xpos, float ypos, void * param)
 // {
 // 	(void)param;
 // 	(void)ypos;
@@ -42,8 +49,7 @@ void hook_keys(mlx_key_data_t keydata, void *param)
 void main_hooks()
 {
 	// mlx_cursor_hook(game()->mlx, hook_mouse_cursor, NULL); //TODO: IMPLEMENT AFTER BONUS
-	
+	mlx_resize_hook(game()->mlx, hook_resize, NULL);
 	mlx_key_hook(game()->mlx,hook_keys, NULL);
-
-	mlx_loop_hook(game()->mlx, render_loop, NULL);
+	mlx_loop_hook(game()->mlx, render_loop, game());
 }

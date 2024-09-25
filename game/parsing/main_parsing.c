@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:40:08 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 02:02:22 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:47:23 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void	init_t_p_struct(t_p *a, int argc, char **argv)
 
 int	main_parsing(int argc, char **argv, t_map *map, t_p *a)
 {
+	if (argc != 2)
+		return (1);
 	init_t_p_struct(a, argc, argv);
 	init_t_pos_struct(a);
 	init_t_color_struct(a);
