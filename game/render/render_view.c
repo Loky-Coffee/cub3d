@@ -26,11 +26,11 @@ mlx_image_t *get_wall_direction(float angle)
 {
 	angle = normalize_angle(angle);
 
-	if (angle >= PI / 4 && angle < 3 * PI / 4) //EAST
+	if (angle >= 0 && angle < M_PI_2) //EAST
 		return (game()->tex->east_img);	
-	else if (angle >= 3 * PI / 4 && angle < 5 * PI / 4) // SOUTH
+	else if (angle >= M_PI_2 && angle < PI) // SOUTH
 		return (game()->tex->south_img);
-	else if (angle >= 5 * PI / 4 && angle < 7 * PI / 4) // WEST
+	else if (angle >= PI && angle < 3 * M_PI_2) // WEST
 		return (game()->tex->west_img);
 	else												// NORTH
 		return (game()->tex->north_img);
@@ -42,28 +42,35 @@ mlx_image_t *get_wall_direction(float angle)
 // -- get the color
 // -- put the pixel
 //----------------//
-// void put_image(float ray_angle, int y_pos, int x_pos, int y_start, int y_end)
-// {
-// 	t_game *g;
-// 	mlx_image_t *wall;
-// 	t_color wall_clr;
-// 	int tex_y;
-// 	int tex_x;
+void put_image(float ray_angle, int y_pos, int x_pos, int y_start, int y_end)
+{
+	t_game *g;
+	mlx_image_t *wall;
+	t_color wall_clr;
+	int tex_y;
+	int tex_x;
+	float hit_point;
 
-// 	g = game();
+	g = game();
 
-// 	wall = get_wall_direction(ray_angle);
+	wall = get_wall_direction(ray_angle);
+	hit_point = get_hit_point(ray_angle);
 
-// 	tex_x =
+	tex_x = (hit_point / TILE) * wall->width;
 
-// 	tex_y =
+	double relative_wall_pos = (y_pos - y_start) / (float)(y_end - y_start);
+	tex_y = relative_wall_pos * wall->height;
+	
+	if (tex_y < 0)
+		tex_y = 0;
+	if (tex_y >= (int)wall->height)
+		tex_y = wall->height - 1;
 
-// 	wall_clr = 
+    wall_clr = *(t_color *)(wall->pixels + (tex_y * wall->width + tex_x) * sizeof(t_color));
 
-// 	mlx_put_pixel(g->img, x_pos, y_pos, )
-// }
+	mlx_put_pixel(g->img, x_pos, y_pos, wall_clr.color);
+}
 
-//TODO: add std height and width from game here for speed
 void render_wall(double distance, int x_pos, double ray_angle, t_game *game) 
 {
 	int wall_height;
@@ -87,9 +94,31 @@ void render_wall(double distance, int x_pos, double ray_angle, t_game *game)
 		else if (y_pos >= y_end)
 			mlx_put_pixel(game->img, x_pos, y_pos, game->map->floor);
 		else
-			mlx_put_pixel(game->img, x_pos, y_pos, 0x00000000);
-			// put_image(ray_angle, y_pos, x_pos, y_start, y_end);
+			put_image(ray_angle, y_pos, x_pos, y_start, y_end);
+			// mlx_put_pixel(game->img, x_pos, y_pos, 0x00000000);
 		y_pos++;
+	}
+}
+
+void render_view(t_game *game)
+{
+	double distance;
+	double start_angle;
+	double delta;
+	int i;
+	int num_rays;
+
+	i = 0;
+	num_rays = game->img->width;
+	game->player.angle = normalize_angle(game->player.angle);
+	start_angle = normalize_angle(game->player.angle - (FOV / 2));
+	delta = FOV / num_rays;
+	while (i < num_rays)
+	{
+		distance = cast_ray_n_draw(game->img, start_angle, 0x0, false);
+		render_wall(distance, i, start_angle, game);
+		start_angle = normalize_angle(start_angle + delta);
+		i++;
 	}
 }
 
@@ -150,25 +179,3 @@ void render_wall(double distance, int x_pos, double ray_angle, t_game *game)
 // 		y_pos++;
 // 	}
 // }
-
-void render_view(t_game *game)
-{
-	double distance;
-	double start_angle;
-	double delta;
-	int i;
-	int num_rays;
-
-	i = 0;
-	num_rays = game->img->width;
-	game->player.angle = normalize_angle(game->player.angle);
-	start_angle = normalize_angle(game->player.angle - (FOV / 2));
-	delta = FOV / num_rays;
-	while (i < num_rays)
-	{
-		distance = cast_ray_n_draw(game->img, start_angle, 0x0, false);
-		start_angle = normalize_angle(start_angle + delta);
-		render_wall(distance, i, start_angle, game);
-		i++;
-	}
-}

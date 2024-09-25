@@ -28,8 +28,8 @@ void render_movement(void)
 		game()->player.pos.y += sin(game()->player.angle + PI / 2) * SPEED;
 	}
 	if (game()->player.look_right)
-		game()->player.angle += 0.20;
+		game()->player.angle += 0.10;
 	else if (game()->player.look_left)
-		game()->player.angle -= 0.20;
+		game()->player.angle -= 0.10;
 	game()->player.angle = normalize_angle(game()->player.angle);
 }

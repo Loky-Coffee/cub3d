@@ -33,13 +33,19 @@ void	initialise_map_size(void)
 {
 	int x;
 	int	y;
+	char **map;
 
+	map = game()->map->map;
 	y = 0;
-	while(game()->map->map[y] != NULL)
+	while(map[y] != NULL)
 	{
 		x = 0;
-		while(game()->map->map[y][x] != '\0')
+		while(map[y][x] != '\0')
+		{
+			if (ft_strchr("NWSE", map[y][x]) != NULL)
+				game()->player.direction = map[y][x];
 			x++;
+		}
 		if (x > game()->map->map_width)
 			game()->map->map_width = x;
 		y++;
@@ -93,7 +99,6 @@ int initialise_game(t_map *map)
 	game()->map = map;
 	game()->player.pos.x = (double)game()->map->player_pos_x * TILE + (TILE / 2);
 	game()->player.pos.y = (double)game()->map->player_pos_y * TILE + (TILE / 2);
-	game()->player.angle = 0;
 	game()->player.move_up = false;
 	game()->player.move_down = false;
 	game()->player.move_left = false;
@@ -110,6 +115,7 @@ int initialise_game(t_map *map)
 	game()->tex->west_img = NULL;
 	game()->tex->east_img = NULL;
 	initialise_map_size();
+	game()->player.angle = get_start_angle(game()->player.direction);
 	if (initialise_mlx() != 0 || load_textures() != 0)
 		return (1);
 	return (0);

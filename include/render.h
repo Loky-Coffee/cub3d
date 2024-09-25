@@ -26,6 +26,7 @@ typedef struct s_vec_2
 typedef struct s_player
 {
 	t_vec_2 pos;
+	char			direction;
 	float			angle;
 	bool			move_up;
 	bool			move_down;
@@ -56,6 +57,7 @@ typedef struct s_game
 	t_player		player;
 	t_map			*map;
 	t_texture		*tex;
+	//t_vec_2		mouse_delta;
 }				t_game;
 
 //---------------- functions ----------------//
@@ -73,6 +75,9 @@ void	render_minimap(void);
 
 //---CALC---//
 float	normalize_angle(float angle);
+float	get_start_angle(char direction);
+bool	hit_is_vertical(float angle);
+float	get_hit_point(float ray_angle);
 
 //---INIT---//
 void	initialise_map(t_map *map);

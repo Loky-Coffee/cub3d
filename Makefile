@@ -6,12 +6,12 @@
 #    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/24 19:17:04 by csteudin         ###   ########.fr        #
+#    Updated: 2024/09/25 16:38:40 by csteudin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc # Compiler
-CFLAGS = -Wall -Wextra -Werror -Iinclude -g #-fsanitize=address# Compiler-Flags, nur für das Kompilieren
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g -Ofast #-fsanitize=address# Compiler-Flags, nur für das Kompilieren
 LIB_MLX = ./include/libmlx42.a # Statische Bibliothek MLX42
 LIBFT = ./include/libft.a # Statische Bibliothek libft
 MLX = ./include/libmlx42.a -lglfw # Verlinken von MLX42 und GLFW
