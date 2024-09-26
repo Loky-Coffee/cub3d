@@ -102,7 +102,6 @@ void render_wall(double distance, int x_pos, double ray_angle, t_game *game)
 
 void render_view(t_game *game)
 {
-	double distance;
 	double start_angle;
 	double delta;
 	int i;
@@ -115,8 +114,8 @@ void render_view(t_game *game)
 	delta = FOV / num_rays;
 	while (i < num_rays)
 	{
-		distance = cast_ray_n_draw(game->img, start_angle, 0x0, false);
-		render_wall(distance, i, start_angle, game);
+		raycast(start_angle, game->player.pos.x, game->player.pos.y, game, &game->ray);
+		render_wall(game->ray.wall_dist, i, start_angle, game);
 		start_angle = normalize_angle(start_angle + delta);
 		i++;
 	}

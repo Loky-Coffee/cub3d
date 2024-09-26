@@ -10,7 +10,7 @@
 # define STD_HEIGHT 1080
 # define TILE		64
 # define PI			3.1415926535
-# define RA			2 * PI
+# define RA			2 * M_PI
 # define SPEED		7.00
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 # define FOV DEG_TO_RAD(80)
@@ -50,6 +50,19 @@ typedef struct s_texture
 	mlx_image_t		*east_img;
 }				t_texture;
 
+typedef struct s_ray
+{
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	ray_x;
+	float	ray_y;
+	float	wall_dist;
+	int		is_horizontal;
+	int		map_x;
+	int		map_y;
+
+}				t_ray;
+
 typedef struct s_game
 {
 	mlx_t			*mlx;
@@ -57,6 +70,7 @@ typedef struct s_game
 	t_player		player;
 	t_map			*map;
 	t_texture		*tex;
+	t_ray			ray;
 	//t_vec_2		mouse_delta;
 }				t_game;
 
@@ -92,6 +106,7 @@ void		render_movement(void);
 //---RAYS---//
 int			wall_colission(float x, float y);
 float		cast_ray_n_draw(mlx_image_t *img, float ray_angle, int clr, bool draw);
+void		raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *ray);
 
 //----UTILS----//
 t_game		*game(void);
