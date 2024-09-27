@@ -56,8 +56,8 @@ void raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *r
 	ray->ray_dir_x = cos(ray_angle);
 	ray->ray_dir_y = sin(ray_angle);
 	
-	ray->map_x = game->player.pos.x;
-	ray->map_y = game->player.pos.y;
+	ray->map_x = (int)floor(game->player.pos.x);
+	ray->map_y = (int)floor(game->player.pos.y);
 	// distance zum nachsten hit am kaestchen
 	d_dist_x = fabs(1 / ray->ray_dir_x);
 	d_dist_y = fabs(1 / ray->ray_dir_y);
@@ -108,9 +108,9 @@ void raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *r
 	
 // calculate the wall distance depending on which wall was hit
 	if (ray->is_horizontal == 0)
-		ray->wall_dist = (ray->map_x - play_x + (1 - step_x) / 2) / ray->ray_dir_x;
+		ray->wall_dist = ((float)ray->map_x - play_x + (1 - step_x) / 2) / ray->ray_dir_x;
 	else
-		ray->wall_dist = (ray->map_y - play_y + (1 - step_y) / 2) / ray->ray_dir_y;
+		ray->wall_dist = ((float)ray->map_y - play_y + (1 - step_y) / 2) / ray->ray_dir_y;
 // calculate the hit points of the ray
 	ray->ray_x = play_x + ray->wall_dist * ray->ray_dir_x;
 	ray->ray_y = play_y + ray->wall_dist * ray->ray_dir_y;

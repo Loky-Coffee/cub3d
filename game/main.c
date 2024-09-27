@@ -24,14 +24,10 @@ int main(int argc, char **argv)
 	initialise_map(&map);
 	
 	if (main_parsing(argc, argv, &map, &parsing) != 0)
-		return (EXIT_FAILURE);
+	    return(ft_exit(EXIT_FAILURE));
 
 	if (main_render(&map) != 0)
-	    return(EXIT_FAILURE);
+	    return(ft_exit(EXIT_FAILURE));
 
 	return(ft_exit(0));
 }
-
-//--------TODO:--------//
-// --
-// --

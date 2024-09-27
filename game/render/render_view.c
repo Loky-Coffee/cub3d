@@ -22,18 +22,22 @@ mlx_image_t *find_wall()
 	return (current_texture);
 }
 
-mlx_image_t *get_wall_direction(float angle)
+mlx_image_t *get_wall_direction(t_ray *ray)
 {
-	angle = normalize_angle(angle);
-
-	if (angle >= 0 && angle < M_PI_2) //EAST
-		return (game()->tex->east_img);	
-	else if (angle >= M_PI_2 && angle < PI) // SOUTH
-		return (game()->tex->south_img);
-	else if (angle >= PI && angle < 3 * M_PI_2) // WEST
-		return (game()->tex->west_img);
-	else												// NORTH
-		return (game()->tex->north_img);
+	if (ray->is_horizontal == 1)
+	{
+		if (ray->ray_dir_y > 0)
+			return (game()->tex->north_img);
+		else
+			return (game()->tex->south_img);
+	}
+	else
+	{
+		if (ray->ray_dir_x > 0)
+			return (game()->tex->east_img);
+		else
+			return (game()->tex->west_img);
+	}
 }
 
 //---WHAT TO DO---//
@@ -41,35 +45,38 @@ mlx_image_t *get_wall_direction(float angle)
 // -- get y pod of pixel on image
 // -- get the color
 // -- put the pixel
+// -- CHANGE GAME AND RAY TO PREVENT FUNCTION CALL
 //----------------//
-void put_image(float ray_angle, int y_pos, int x_pos, int y_start, int y_end)
+void put_image(int y_pos, int x_pos, int y_start, int y_end, t_ray *ray)
 {
 	t_game *g;
 	mlx_image_t *wall;
 	t_color wall_clr;
-	int tex_y;
-	int tex_x;
+	u_int32_t tex_y; // USE VECTOR
+	u_int32_t tex_x;
 	float hit_point;
-
 	g = game();
-
-	wall = get_wall_direction(ray_angle);
-	hit_point = get_hit_point(ray_angle);
-
-	tex_x = (hit_point / TILE) * wall->width;
-
-	double relative_wall_pos = (y_pos - y_start) / (float)(y_end - y_start);
-	tex_y = relative_wall_pos * wall->height;
+	wall = get_wall_direction(ray);
+	if (ray->is_horizontal)
+		hit_point = ray->ray_x;
+	else
+		hit_point = ray->ray_y;
 	
+	tex_x = (int)(hit_point / TILE * wall->width) % wall->width;
+	
+	float relative_wall_pos = (float)(y_pos - y_start) / (y_end - y_start);	
+	tex_y = (int)(relative_wall_pos * wall->height);
 	if (tex_y < 0)
 		tex_y = 0;
-	if (tex_y >= (int)wall->height)
+	if (tex_y >= wall->height)
 		tex_y = wall->height - 1;
 
-    wall_clr = *(t_color *)(wall->pixels + (tex_y * wall->width + tex_x) * sizeof(t_color));
-
+    wall_clr.color = *(u_int32_t *)(wall->pixels + (tex_y * wall->width + tex_x) * sizeof(u_int32_t));
 	mlx_put_pixel(g->img, x_pos, y_pos, wall_clr.color);
 }
+
+// printf("HIT_POINT = %f TEX_X = %d RAY_Y = %f RAY_X = %f\n",hit_point, tex_x, ray->ray_y, ray->ray_y);
+// printf("is_hori: %d, map_x: %d, map_y: %d, ray_dir_x %f, ray_dir_y: %f, ray_x: %f, ray_y: %f, distace: %f\n", ray->is_horizontal, ray->map_x, ray->map_y, ray->ray_dir_x, ray->ray_dir_y, ray->ray_x, ray->ray_y, ray->wall_dist);
 
 void render_wall(double distance, int x_pos, double ray_angle, t_game *game) 
 {
@@ -83,6 +90,7 @@ void render_wall(double distance, int x_pos, double ray_angle, t_game *game)
 	wall_height = (int)(TILE * height / (distance * cos(ray_angle - game->player.angle)));
 	if (wall_height < 15)
 		wall_height = 15;
+	
 	y_start = (height / 2) - (wall_height / 2);
 	y_end = y_start + wall_height;
 	y_pos = 0;
@@ -94,8 +102,7 @@ void render_wall(double distance, int x_pos, double ray_angle, t_game *game)
 		else if (y_pos >= y_end)
 			mlx_put_pixel(game->img, x_pos, y_pos, game->map->floor);
 		else
-			put_image(ray_angle, y_pos, x_pos, y_start, y_end);
-			// mlx_put_pixel(game->img, x_pos, y_pos, 0x00000000);
+			put_image(y_pos, x_pos, y_start, y_end, &game->ray);
 		y_pos++;
 	}
 }

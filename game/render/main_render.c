@@ -52,6 +52,5 @@ int	main_render(t_map *map)
 
 	mlx_loop(game()->mlx);
 	mlx_terminate(game()->mlx);
-	// exit funciton
 	return (0);
 }
