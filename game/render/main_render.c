@@ -47,10 +47,7 @@ int	main_render(t_map *map)
 {
 	if (initialise_game(map) != 0)
 		return (1);
-	
 	main_hooks();
-
 	mlx_loop(game()->mlx);
-	mlx_terminate(game()->mlx);
 	return (0);
 }

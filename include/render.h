@@ -82,10 +82,15 @@ typedef struct s_game
 
 //---------------- functions ----------------//
 
+//---MAIN---//
+int	main(int argc, char **argv);
+int	ft_exit(int exit_status);
+
+
 //---MAIN-HOOKS---//
 void	hook_keys(mlx_key_data_t keydata, void *param);
-// void hook_mouse_cursor(float xpos, float ypos, void * param)
 void	main_hooks();
+// void hook_mouse_cursor(float xpos, float ypos, void * param)
 
 //---MAIN-RENDER---//
 int		main_render(t_map *map);

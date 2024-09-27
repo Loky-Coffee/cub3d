@@ -20,11 +20,7 @@ void hook_keys(mlx_key_data_t keydata, void *param)
 			game()->player.look_left = (keydata.action == MLX_PRESS);
 		else if (keydata.key == MLX_KEY_ESCAPE)
 			if (game() && game()->mlx)
-			{
-				mlx_terminate(game()->mlx);
-				exit(EXIT_SUCCESS);
-				//TODO: add ft_exit function here
-			}
+				ft_exit(EXIT_SUCCESS);
 	}
 }
 
@@ -49,7 +45,7 @@ void hook_resize(int32_t width, int32_t height, void* param)
 void main_hooks()
 {
 	// mlx_cursor_hook(game()->mlx, hook_mouse_cursor, NULL); //TODO: IMPLEMENT AFTER BONUS
-	mlx_resize_hook(game()->mlx, hook_resize, NULL);
+	mlx_resize_hook(game()->mlx, hook_resize, NULL); //TODO: add logic to resize images so its more smooth
 	mlx_key_hook(game()->mlx,hook_keys, NULL);
 	mlx_loop_hook(game()->mlx, render_loop, game());
 }

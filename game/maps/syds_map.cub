@@ -1,7 +1,7 @@
-NO ./game/assets/children_map/Kinder_Motive1.png
-SO ./game/assets/children_map/Kinder_Motive2.png
-WE ./game/assets/children_map/Kinder_Motive3.png
-EA ./game/assets/children_map/Kinder_Motive4.png
+NO ./game/assets/Horror_map/NORTH.png
+SO ./game/assets/Horror_map/SOUTH.png
+WE ./game/assets/Horror_map/WEST.png
+EA ./game/assets/Horror_map/EAST.png
 
 F 16, 16, 16
 C 125, 0, 50

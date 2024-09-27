@@ -54,7 +54,7 @@ void put_image(int y_pos, int x_pos, int y_start, int y_end, t_game *g)
 		tex.y = 0;
 	if (tex.y >= wall->height)
 		tex.y = wall->height - 1;
-    mlx_put_pixel(g->img, x_pos, y_pos, argb_to_rgba(*(t_color *)\
+	mlx_put_pixel(g->img, x_pos, y_pos, argb_to_rgba(*(t_color *)\
 		(wall->pixels + (tex.y * wall->width + tex.x) * sizeof(uint32_t))));
 }
 
