@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CheckColorsRGB.c                                   :+:      :+:    :+:   */
+/*   load_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 02:01:24 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:34:21 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {
-	int		color;
+	uint8_t		color;
 	size_t	i;
 
 	color = 0;

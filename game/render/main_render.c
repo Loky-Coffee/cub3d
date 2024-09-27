@@ -8,7 +8,7 @@ void render_minimap(void) // PUT TO BONUS AFTER FINISHING
 	int num_rays = game()->img->width;
 	int i = 0;
 	
-	clr.color = 0x00FF008A;
+	clr.color = 0x00FF00FF;
 
 	clear_image(game()->img);
 	

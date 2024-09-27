@@ -23,6 +23,12 @@ typedef struct s_vec_2
 	float y;
 }				t_vec_2;
 
+typedef struct s_vec_2_int
+{
+	u_int32_t x;
+	u_int32_t y;
+}				t_vec_2_int;
+
 typedef struct s_player
 {
 	t_vec_2 pos;
