@@ -15,7 +15,19 @@ int ft_exit(int exit_status)
 	return (exit_status);
 }
 
-
+//---TODO:---//
+// -- fix makefile (kathestelimenos)
+// -- fix RGB in map file (parsing)
+// -- change resizing of textures
+// -- check for leaks
+// -- split up functions
+// -- BONUS:
+// - MINIMAP - 100%
+// - MOUSE INPUT - 100%
+// - WALL COLISSION - 100%
+// - SPRITE ANIMATION - 100%
+// - ADD FOG OF DISTANCE AKA CHANGE ALPHA VALUE DEPENDING ON DISTANCE OF WALLS
+// - doors but i dont think we will do them
 int main(int argc, char **argv)
 {
 	t_p parsing;

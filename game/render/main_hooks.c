@@ -31,21 +31,28 @@ void hook_resize(int32_t width, int32_t height, void* param)
 	mlx_image_to_window(game()->mlx, game()->img, 0, 0);
 }
 
-// void hook_mouse_cursor(float xpos, float ypos, void * param)
-// {
-// 	(void)param;
-// 	(void)ypos;
-// 	static xdelta;
+void hook_mouse_cursor(double xpos, double ypos, void * param)
+{
+	t_game *g = (t_game *)param;
+	(void)ypos;
+	float xdelta;
 
-// 	mlx_mouse_get_delta(game()->mlx, xpos, ypos);
-
-// 	game()->player.angle = normalize_angle(game()->player.angle + (xpos / 100));
-// }
+	xdelta = g->mouse_delta.x - (float)xpos;
+	g->mouse_delta.x = (float)xpos;
+	g->player.angle = (g->player.angle - (xdelta * 0.001));
+	
+	// printf("%f, %f\n", xpos, ypos);
+}
 
 void main_hooks()
 {
-	// mlx_cursor_hook(game()->mlx, hook_mouse_cursor, NULL); //TODO: IMPLEMENT AFTER BONUS
-	mlx_resize_hook(game()->mlx, hook_resize, NULL); //TODO: add logic to resize images so its more smooth
+	int32_t mouse_xpos;
+	int32_t mouse_ypos;
+
+	mlx_get_mouse_pos(game()->mlx, &mouse_xpos, &mouse_ypos);
+	game()->mouse_delta.x = (float)mouse_xpos;
+	mlx_cursor_hook(game()->mlx, hook_mouse_cursor, game());
+	mlx_resize_hook(game()->mlx, hook_resize, NULL);
 	mlx_key_hook(game()->mlx,hook_keys, NULL);
 	mlx_loop_hook(game()->mlx, render_loop, game());
 }

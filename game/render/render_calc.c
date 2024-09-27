@@ -36,3 +36,17 @@ float get_hit_point(float ray_angle)
 	else
 		return (fmod(game()->player.ray_x, TILE));
 }
+
+void wait_for_fps(void)
+{
+	static struct timeval last_time;
+	struct timeval curr_time;
+	long elapsed_time;
+
+	gettimeofday(&curr_time, NULL);
+	elapsed_time = (curr_time.tv_sec - last_time.tv_sec) * 1000000 + 
+			(curr_time.tv_usec - last_time.tv_usec);
+	if (elapsed_time < FRAME_TIME)
+		usleep(FRAME_TIME - elapsed_time - 3);
+	gettimeofday(&last_time, NULL);
+}

@@ -13,6 +13,9 @@
 #include "./libft.h"
 #include "./MLX42.h"
 
+//COMMENT OUT AND DELETE AFTER MAKING BONUS
+# include <sys/time.h>
+
 # ifndef MAX_PATH_LENGTH
 #  define MAX_PATH_LENGTH 4096
 # endif
@@ -34,7 +37,7 @@ typedef struct s_map
 	int				map_width;
 	int				map_height;
 	//add actual open png in mlx
-}t_map;
+}				t_map;
 
 #include "parsing.h"
 #include "render.h"

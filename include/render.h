@@ -15,6 +15,9 @@
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 # define FOV DEG_TO_RAD(80)
 
+# define FPS		27
+# define FRAME_TIME (1000000 / FPS)
+
 //---------------- structs ----------------//
 
 typedef struct s_vec_2
@@ -77,7 +80,7 @@ typedef struct s_game
 	t_map			*map;
 	t_texture		*tex;
 	t_ray			ray;
-	//t_vec_2		mouse_delta;
+	t_vec_2			mouse_delta;
 }				t_game;
 
 //---------------- functions ----------------//
@@ -90,7 +93,12 @@ int	ft_exit(int exit_status);
 //---MAIN-HOOKS---//
 void	hook_keys(mlx_key_data_t keydata, void *param);
 void	main_hooks();
+
+
+//====BONUS-PART====//
 // void hook_mouse_cursor(float xpos, float ypos, void * param)
+void wait_for_fps(void);
+
 
 //---MAIN-RENDER---//
 int		main_render(t_map *map);
