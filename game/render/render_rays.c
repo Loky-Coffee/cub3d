@@ -31,7 +31,7 @@ float cast_ray_n_draw(mlx_image_t *img, float ray_angle, int clr, bool draw)
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (draw)
-			mlx_put_pixel(img, (u_int32_t)ray_x, (u_int32_t)ray_y, clr);
+			mlx_put_pixel(img, (u_int32_t)10 + ray_x * MAP_SCALE, (u_int32_t)10 + ray_y * MAP_SCALE, clr);
 	}
 	distance = sqrt(pow(ray_x - game()->player.pos.x, 2) + pow(ray_y - game()->player.pos.y, 2));
 	game()->player.ray_x = ray_x;

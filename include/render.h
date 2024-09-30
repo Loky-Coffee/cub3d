@@ -15,9 +15,10 @@
 # define DEG_TO_RAD(deg) ((deg) * PI / 180.0)
 # define FOV DEG_TO_RAD(80)
 
-# define FPS		27
+# define FPS		40
 # define FRAME_TIME (1000000 / FPS)
-
+# define SENSITIVITY 0.004
+# define MAP_SCALE	0.3
 //---------------- structs ----------------//
 
 typedef struct s_vec_2
@@ -131,7 +132,7 @@ void		raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *
 t_game		*game(void);
 void		clear_image(mlx_image_t *img);
 void		ren_draw_square(mlx_image_t *img, int x, int y, int clr);
-void		ren_draw_table(mlx_image_t *img, char **map, int row, int col);
+void		ren_draw_table(mlx_image_t *img, char **map);
 void		ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, int clr);
 
 //---VIEW---//

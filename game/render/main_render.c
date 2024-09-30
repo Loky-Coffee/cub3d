@@ -9,11 +9,9 @@ void render_minimap(void) // PUT TO BONUS AFTER FINISHING
 	int i = 0;
 	
 	clr.color = 0x00FF00FF;
-
-	clear_image(game()->img);
 	
-	ren_draw_table(game()->img, game()->map->map,  game()->map->map_height / 30, game()->map->map_width / 30);
-	ren_draw_circle(game()->img, game()->player.pos.x, game()->player.pos.y, 3, clr.color);
+	ren_draw_table(game()->img, game()->map->map);
+	ren_draw_circle(game()->img, 10 + game()->player.pos.x * MAP_SCALE, 10 + game()->player.pos.y * MAP_SCALE, 3, clr.color);
 	game()->player.angle = normalize_angle(game()->player.angle);
 	start_angle = normalize_angle(game()->player.angle - FOV / 2);
 	delta = FOV / num_rays;
@@ -36,9 +34,11 @@ void render_loop(void *param)
 	game = (t_game *)param;
 
 	wait_for_fps();
+
 	render_movement();
 	render_view(game);
 	ren_draw_circle(game->img, game->img->width / 2, game->img->height / 2, 2, 0xFFFFFFFF);
+	render_minimap();
 }
 
 int	main_render(t_map *map)

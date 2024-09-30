@@ -37,10 +37,10 @@ void ren_draw_square(mlx_image_t *img, int x, int y, int clr)
 	int j;
 
 	i = 0;
-	while(i < TILE - 1)
+	while(i < (TILE * MAP_SCALE) - 2)
 	{
 		j = 0;
-		while(j < TILE - 1)
+		while(j < (TILE * MAP_SCALE) - 2)
 		{
 			mlx_put_pixel(img, x + i, y + j, clr);
 			j++;
@@ -49,13 +49,13 @@ void ren_draw_square(mlx_image_t *img, int x, int y, int clr)
 	}
 }
 
-void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH ANGEPASST WERDEN
+void ren_draw_table(mlx_image_t *img, char **map)
 {
 	int i;
 	int j;
+	int off_x;
+	int off_y;
 
-	(void)row;
-	(void)col;
 
 	i = 0;
 	while(map[i])
@@ -63,19 +63,22 @@ void ren_draw_table(mlx_image_t *img, char **map, int row, int col) // MUSS NOCH
 		j = 0;
 		while(map[i][j])
 		{
+			off_x = 10 + ((j * TILE) * MAP_SCALE);
+			off_y = 10 + ((i * TILE) * MAP_SCALE);
 			if (map && map[i][j] == '1')
-				ren_draw_square(img, j * TILE, i * TILE, 0x00000000);
+				ren_draw_square(img, off_x, off_y, 0x00000000);
 			else if (map && map[i][j] == '0')
-				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
+				ren_draw_square(img, off_x, off_y, 0x000000FF);
 			else if (map && (map[i][j] == 'N' || map[i][j] == 'S'))
-				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
+				ren_draw_square(img, off_x, off_y, 0x000000FF);
 			else if (map && (map[i][j] == 'E' || map[i][j] == 'W'))
-				ren_draw_square(img, j * TILE, i * TILE, 0x0000FFFF);
+				ren_draw_square(img, off_x, off_y, 0x000000FF);
 			j++;
 		}
 		i++;
 	}
 }
+
 
 void ren_draw_circle(mlx_image_t *img, int x_core, int y_core, int radius, int clr)
 {
