@@ -21,6 +21,14 @@
 # define MAP_SCALE	0.3
 //---------------- structs ----------------//
 
+	typedef enum move
+	{
+		MOV_UP,
+		MOV_DOWN,
+		MOV_LEFT,
+		MOV_RIGHT
+	} t_move;
+
 typedef struct s_vec_2
 {
 	float x;

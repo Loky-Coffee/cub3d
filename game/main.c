@@ -22,10 +22,11 @@ int ft_exit(int exit_status)
 // -- check for leaks
 // -- split up functions
 // -- BONUS:
-// - MINIMAP - 100%
-// - MOUSE INPUT - 100%
-// - WALL COLISSION - 100%
-// - SPRITE ANIMATION - 100%
+// - MINIMAP - DONE
+// - MOUSE INPUT - DONE
+// - WALL COLISSION - DONE
+// - SPRITE ANIMATION 
+// - ADD FPS COUNTER
 // - ADD FOG OF DISTANCE AKA CHANGE ALPHA VALUE DEPENDING ON DISTANCE OF WALLS
 // - doors but i dont think we will do them
 int main(int argc, char **argv)
