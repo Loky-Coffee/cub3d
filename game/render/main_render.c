@@ -33,12 +33,8 @@ void render_loop(void *param)
 
 	game = (t_game *)param;
 
-	wait_for_fps();
-
 	render_movement();
 	render_view(game);
-	ren_draw_circle(game->img, game->img->width / 2, game->img->height / 2, 2, 0xFFFFFFFF);
-	render_minimap();
 }
 
 int	main_render(t_map *map)

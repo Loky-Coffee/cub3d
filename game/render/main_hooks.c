@@ -31,29 +31,8 @@ void hook_resize(int32_t width, int32_t height, void* param)
 	mlx_image_to_window(game()->mlx, game()->img, 0, 0);
 }
 
-void hook_mouse_cursor(double xpos, double ypos, void * param)
-{
-	t_game *g = (t_game *)param;
-	(void)ypos;
-	float xdelta;
-
-	xdelta = g->mouse_delta.x - (float)xpos;
-	mlx_set_mouse_pos(g->mlx, g->img->width / 2, g->img->height / 2);
-	g->mouse_delta.x = (float)g->img->width / 2;
-	g->player.angle = (g->player.angle - (xdelta * SENSITIVITY));
-}
-
 void main_hooks()
 {
-	int32_t mouse_xpos;
-	int32_t mouse_ypos;
-
-	//bonus
-	mlx_set_cursor_mode(game()->mlx, MLX_MOUSE_HIDDEN);
-	mlx_get_mouse_pos(game()->mlx, &mouse_xpos, &mouse_ypos);
-	game()->mouse_delta.x = (float)mouse_xpos;
-	mlx_cursor_hook(game()->mlx, hook_mouse_cursor, game());
-	//mandatory
 	mlx_resize_hook(game()->mlx, hook_resize, NULL);
 	mlx_key_hook(game()->mlx,hook_keys, NULL);
 	mlx_loop_hook(game()->mlx, render_loop, game());

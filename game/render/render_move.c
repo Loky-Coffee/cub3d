@@ -31,11 +31,9 @@ t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
 
 void move(t_vec_2 new_pos)
 {
-	if (!wall_colission(new_pos.x, new_pos.y))
-	{
+
 		game()->player.pos.x = new_pos.x;
 		game()->player.pos.y = new_pos.y;
-	}
 }
 
 void look(t_game *g)

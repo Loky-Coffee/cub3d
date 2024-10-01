@@ -98,16 +98,9 @@ typedef struct s_game
 int	main(int argc, char **argv);
 int	ft_exit(int exit_status);
 
-
 //---MAIN-HOOKS---//
 void	hook_keys(mlx_key_data_t keydata, void *param);
 void	main_hooks();
-
-
-//====BONUS-PART====//
-// void hook_mouse_cursor(float xpos, float ypos, void * param)
-void wait_for_fps(void);
-
 
 //---MAIN-RENDER---//
 int		main_render(t_map *map);
