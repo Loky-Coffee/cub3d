@@ -6,7 +6,7 @@
 #    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 20:13:53 by aalatzas          #+#    #+#              #
-#    Updated: 2024/10/01 20:50:05 by csteudin         ###   ########.fr        #
+#    Updated: 2024/10/01 20:57:01 by csteudin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ re: fclean all
 $(LIB_MLX):
 	@git clone https://github.com/codam-coding-college/MLX42.git
 	@cd MLX42; cmake -B build; cmake --build build -j4
+	@cp MLX42/build/libmlx42.a ./include_bonus
+	@cp MLX42/include/MLX42/MLX42.h ./include_bonus
 	@mv MLX42/build/libmlx42.a ./include
 	@mv MLX42/include/MLX42/MLX42.h ./include
 	@rm -rf MLX42
@@ -76,6 +78,8 @@ clean_mlx:
 	@rm -rf MLX42
 	@rm -f ./include/MLX42.h
 	@rm -f ./include/libmlx42.a
+	@rm -f ./include_bonus/MLX42.h
+	@rm -f ./include_bonus/libmlx42.a
 	@echo "MLX42-Dateien gelöscht"
 
 ############################### LIBFT_BUILD_RULES ##############################
