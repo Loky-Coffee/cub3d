@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   LoadMap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:38:03 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 02:08:18 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:26:34 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 static void	open_map(t_p *a)
 {

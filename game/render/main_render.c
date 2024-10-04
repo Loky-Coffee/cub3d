@@ -1,38 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_render.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/04 13:29:23 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/04 13:29:45 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
-void render_minimap(void) // PUT TO BONUS AFTER FINISHING
+void	render_loop(void *param)
 {
-	t_color clr;
-	double start_angle;
-	double delta;
-	int num_rays = game()->img->width;
-	int i = 0;
-	
-	clr.color = 0x00FF00FF;
-	
-	ren_draw_table(game()->img, game()->map->map);
-	ren_draw_circle(game()->img, 10 + game()->player.pos.x * MAP_SCALE, 10 + game()->player.pos.y * MAP_SCALE, 3, clr.color);
-	game()->player.angle = normalize_angle(game()->player.angle);
-	start_angle = normalize_angle(game()->player.angle - FOV / 2);
-	delta = FOV / num_rays;
-	while (i < num_rays)
-	{
-		cast_ray_n_draw(game()->img, start_angle, clr.color, true);
-		start_angle = normalize_angle(start_angle + delta);
-		i++;
-	}
-}
-
-/*
-*	HERE WE CAN ADD ALL THE BONUS ELEMENTS WHEN THE TIME HAS COME
-*
-*/
-void render_loop(void *param)
-{
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)param;
-
 	render_movement();
 	render_view(game);
 }

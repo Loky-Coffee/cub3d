@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/10/04 10:40:27 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:26:46 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {
 	uint8_t		color;
-	size_t	i;
+	size_t		i;
 
 	color = 0;
 	i = 0;

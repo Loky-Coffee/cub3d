@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_move.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/04 13:30:43 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/04 13:30:58 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
-t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
+t_vec_2	get_next_pos(t_vec_2 pos, t_move mode)
 {
-	t_vec_2 new_pos;
+	t_vec_2	new_pos;
 
 	new_pos.x = 0;
 	new_pos.y = 0;
@@ -29,14 +41,13 @@ t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
 	return (new_pos);
 }
 
-void move(t_vec_2 new_pos)
+void	move(t_vec_2 new_pos)
 {
-
-		game()->player.pos.x = new_pos.x;
-		game()->player.pos.y = new_pos.y;
+	game()->player.pos.x = new_pos.x;
+	game()->player.pos.y = new_pos.y;
 }
 
-void look(t_game *g)
+void	look(t_game *g)
 {
 	if (g->player.look_right)
 		g->player.angle += 0.10;
@@ -44,15 +55,16 @@ void look(t_game *g)
 		g->player.angle -= 0.10;
 	g->player.angle = normalize_angle(g->player.angle);
 }
+
 /*
-*	> cosinus is for calculating how much movement is on the X
-*	> sinus is for how much on the y
-*	> then just multiply it with the speed and the you got your new position
-*/
-void render_movement(void)
+ *	> cosinus is for calculating how much movement is on the X
+ *	> sinus is for how much on the y
+ *	> then just multiply it with the speed and the you got your new position
+ */
+void	render_movement(void)
 {
-	t_game *g;
-	t_vec_2 new_pos;
+	t_game	*g;
+	t_vec_2	new_pos;
 
 	g = game();
 	look(g);

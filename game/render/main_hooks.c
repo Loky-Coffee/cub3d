@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_hooks.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/04 13:29:10 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/04 13:29:17 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
-void hook_keys(mlx_key_data_t keydata, void *param)
+void	hook_keys(mlx_key_data_t keydata, void *param)
 {
 	(void)param;
-
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_RELEASE)
 	{
 		if (keydata.key == MLX_KEY_W)
@@ -24,16 +35,16 @@ void hook_keys(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void hook_resize(int32_t width, int32_t height, void* param)
+void	hook_resize(int32_t width, int32_t height, void *param)
 {
 	(void)param;
 	mlx_resize_image(game()->img, width, height);
 	mlx_image_to_window(game()->mlx, game()->img, 0, 0);
 }
 
-void main_hooks()
+void	main_hooks(void)
 {
 	mlx_resize_hook(game()->mlx, hook_resize, NULL);
-	mlx_key_hook(game()->mlx,hook_keys, NULL);
+	mlx_key_hook(game()->mlx, hook_keys, NULL);
 	mlx_loop_hook(game()->mlx, render_loop, game());
 }
