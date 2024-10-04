@@ -1,5 +1,5 @@
 CC = cc # Compiler
-CFLAGS = -Wall -Wextra -Werror -Iinclude -g -Ofast #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Iinclude -g -Ofast -fsanitize=address
 
 # LIBS
 LIB_MLX = ./include/libmlx42.a 

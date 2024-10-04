@@ -100,7 +100,7 @@ void raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *r
 			ray->map_y += step_y;
 			ray->is_horizontal = 1;
 		}
-		if (wall_colission(ray->map_x, ray->map_y))
+		if (wall_colission((float)ray->map_x, (float)ray->map_y))
 			break;
 	}
 
