@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CheckMap.c                                         :+:      :+:    :+:   */
+/*   CheckMap_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:47:14 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 01:40:01 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:40:25 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 void	find_char_position(t_p *a)
 {

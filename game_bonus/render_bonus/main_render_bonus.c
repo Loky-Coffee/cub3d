@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 void render_minimap(void) // PUT TO BONUS AFTER FINISHING
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CheckTexturePath.c                                 :+:      :+:    :+:   */
+/*   load_texture_path_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:48:47 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 01:57:27 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:40:36 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 static void	copy_texture_path(t_p *a, int i, char *str)
 {

@@ -8,6 +8,7 @@ MLX = ./include/libmlx42.a -lglfw
 
 # OBJECT
 OBJ_DIR = obj/
+OBJ_DIR_BONUS = obj_bonus/
 
 # SOURCE
 SRC_DIR = game
@@ -28,17 +29,17 @@ SRC_RENDER_BONUS = $(wildcard $(SRC_DIR_BONUS)/render_bonus/*_bonus.c)
 SRC_MAIN_BONUS = $(SRC_DIR_BONUS)/main_bonus.c
 
 SRC_BONUS = $(SRC_PARSING_BONUS) $(SRC_RENDER_BONUS) $(SRC_MAIN_BONUS)
-OBJ_BONUS = $(patsubst $(SRC_DIR_BONUS)/%.c, $(OBJ_DIR)%.o, $(SRC_BONUS))
+OBJ_BONUS = $(patsubst $(SRC_DIR_BONUS)/%.c, $(OBJ_DIR_BONUS)%.o, $(SRC_BONUS))
 NAME_BONUS = cub3D_bonus
 
 # RULES - MANDATORY
 all: $(LIB_MLX) $(NAME)
 
-$(NAME): libft $(OBJ) $(LIB_MLX)
+$(NAME): libft $(OBJ) $(LIB_MLX) $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX)
 	@echo "Build abgeschlossen: $(NAME)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -48,19 +49,21 @@ $(OBJ_DIR):
 # RULES - BONUS
 bonus: $(LIB_MLX) $(NAME_BONUS)
 
-$(NAME_BONUS): libft $(OBJ_BONUS) $(LIB_MLX)
+$(NAME_BONUS): libft $(OBJ_BONUS) $(LIB_MLX) $(OBJ_DIR_BONUS)
 	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX)
 	@echo "Bonus-Build abgeschlossen: $(NAME_BONUS)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR_BONUS)/%.c | $(OBJ_DIR)
+$(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	
+
+$(OBJ_DIR_BONUS):
+	@mkdir -p $(OBJ_DIR_BONUS)
+
 ################################ CLEANING RULES ################################
 
 clean:
-	@rm -f $(OBJ) $(OBJ_BONUS)
-	@rm -rf obj
+	@rm -rf $(OBJ_DIR) $(OBJ_DIR_BONUS)
 	@rm -f /include/libft.*
 	@echo "Objektdateien gelöscht"
 

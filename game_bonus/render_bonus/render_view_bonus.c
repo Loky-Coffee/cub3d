@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 mlx_image_t *get_wall_direction(t_ray *ray)
 {

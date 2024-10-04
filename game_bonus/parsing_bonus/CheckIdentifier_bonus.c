@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CheckIdentifier.c                                  :+:      :+:    :+:   */
+/*   CheckIdentifier_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 04:16:13 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/24 01:17:47 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:40:16 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 static void	check_color_pos(t_p *a)
 {

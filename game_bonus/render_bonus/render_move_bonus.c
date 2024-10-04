@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
 {

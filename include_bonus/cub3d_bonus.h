@@ -39,7 +39,7 @@ typedef struct s_map
 	//add actual open png in mlx
 }				t_map;
 
-#include "parsing.h"
-#include "render.h"
+#include "parsing_bonus.h"
+#include "render_bonus.h"
 
 #endif

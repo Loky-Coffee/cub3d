@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_colors.c                                      :+:      :+:    :+:   */
+/*   load_colors_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/27 16:34:21 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:40:27 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {

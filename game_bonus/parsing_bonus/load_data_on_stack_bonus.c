@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_data_on_stack.c                               :+:      :+:    :+:   */
+/*   load_data_on_stack_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:24:45 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/21 01:11:09 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/04 10:40:30 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include_bonus/cub3d_bonus.h"
 
 void	erase_oldmap(t_p *a)
 {
