@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:21 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/04 13:28:51 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 07:06:23 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	t_p		parsing;
 	t_map	map;
 
+	if (argc != 2)
+		return (printf("Error: Needs just the map path to start\n"), 0);
 	initialise_map(&map);
 	if (main_parsing(argc, argv, &map, &parsing) != 0)
 		return (ft_exit(EXIT_FAILURE));
