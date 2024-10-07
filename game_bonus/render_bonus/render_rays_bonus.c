@@ -1,26 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_rays_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/07 06:29:46 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/07 06:29:48 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include_bonus/cub3d_bonus.h"
 
-int wall_colission(float x, float y)
+float	cast_ray_n_draw(mlx_image_t *img, float ray_angle, int clr, bool draw)
 {
-	int map_x;
-	int map_y;
-
-	map_x = (int)x / TILE;
-	map_y = (int)y / TILE;
-	if ((map_x >= 0) && (map_x < game()->map->map_width) && (map_y >= 0) && map_y < game()->map->map_height)
-		return(game()->map->map[map_y][map_x] == '1');
-	return (1);
-}
-
-// vielleicht radar stufen einbauen durch integer der sich inkrementiert
-// und dann so halbkreise zieht
-float cast_ray_n_draw(mlx_image_t *img, float ray_angle, int clr, bool draw)
-{
-	float ray_x;
-	float ray_y;
-	float ray_dx;
-	float ray_dy;
-	float distance;
+	float	ray_x;
+	float	ray_y;
+	float	ray_dx;
+	float	ray_dy;
+	float	distance;
 
 	ray_x = game()->player.pos.x;
 	ray_y = game()->player.pos.y;
@@ -31,87 +29,92 @@ float cast_ray_n_draw(mlx_image_t *img, float ray_angle, int clr, bool draw)
 		ray_x += ray_dx;
 		ray_y += ray_dy;
 		if (draw)
-			mlx_put_pixel(img, (u_int32_t)10 + ray_x * MAP_SCALE, (u_int32_t)10 + ray_y * MAP_SCALE, clr);
+			mlx_put_pixel(img, (u_int32_t)10 + ray_x * MAP_SCALE, (u_int32_t)10
+				+ ray_y * MAP_SCALE, clr);
 	}
-	distance = sqrt(pow(ray_x - game()->player.pos.x, 2) + pow(ray_y - game()->player.pos.y, 2));
+	distance = sqrt(pow(ray_x - game()->player.pos.x, 2) + pow(ray_y
+				- game()->player.pos.y, 2));
 	game()->player.ray_x = ray_x;
 	game()->player.ray_y = ray_y;
-	return distance;
+	return (distance);
 }
 
-void raycast(float ray_angle, float play_x, float play_y, t_game *game, t_ray *ray)
+void	calculate_step_and_side_dist(t_ray *ray, t_vec_2 *step,
+		t_vec_2 *side_dist, t_vec_2 d_dist)
 {
-	float d_dist_x;
-	float d_dist_y;
-	// um zu bestimmen ob der strahl jeweils nach links - rechts(X) oder oben - unten(Y) geht
-	
-	float step_x;
-	float step_y;
-	
-	// distanz zum naechstem hit am kaestchen
-	float side_dist_x;
-	float side_dist_y;
-	
-	// dadurch bekommen wir die richtung in der die rays zielen
-	ray->ray_dir_x = cos(ray_angle);
-	ray->ray_dir_y = sin(ray_angle);
-	
-	ray->map_x = (int)floor(game->player.pos.x);
-	ray->map_y = (int)floor(game->player.pos.y);
-	// distance zum nachsten hit am kaestchen
-	d_dist_x = fabs(1 / ray->ray_dir_x);
-	d_dist_y = fabs(1 / ray->ray_dir_y);
+	t_vec_2	player_pos;
 
-	if (ray->ray_dir_x < 0) // wenn negativ dann zeigt ray nach links also -1
+	player_pos = game()->player.pos;
+	if (ray->ray_dir_x < 0)
 	{
-		step_x = -1;
-		side_dist_x = (play_x - ray->map_x) * d_dist_x;
-	}
-	else					// ansonsten 1 weil es in die positive richtung berechnet werden muss
-	{
-		step_x = 1;
-		side_dist_x = (ray->map_x + 1.0 - play_x) * d_dist_x;
-	}
-
-	if (ray->ray_dir_y < 0)
-	{
-		step_y = -1;
-		side_dist_y = (play_y - ray->map_y) * d_dist_y;
+		step->x = -1;
+		side_dist->x = (player_pos.x - ray->map_x) * d_dist.x;
 	}
 	else
 	{
-		step_y = 1;
-		side_dist_y = (ray->map_y + 1.0 - play_y) * d_dist_y;
+		step->x = 1;
+		side_dist->x = (ray->map_x + 1.0 - player_pos.x) * d_dist.x;
 	}
-	
-	//- - - - - - - CUT - HERE - - - - - - -//
+	if (ray->ray_dir_y < 0)
+	{
+		step->y = -1;
+		side_dist->y = (player_pos.y - ray->map_y) * d_dist.y;
+	}
+	else
+	{
+		step->y = 1;
+		side_dist->y = (ray->map_y + 1.0 - player_pos.y) * d_dist.y;
+	}
+}
 
+void	perform_dda(t_vec_2 *side_dist, t_vec_2 *d_dist, t_vec_2 *step,
+		t_ray *ray)
+{
 	while (true)
 	{
-		if(side_dist_x < side_dist_y) // wenn der abstand zum nachsten x hit kleiner ist als y wird dieser zuerst berechnet
+		if (side_dist->x < side_dist->y)
 		{
-			side_dist_x += d_dist_x;
-			ray->map_x += step_x;
+			side_dist->x += d_dist->x;
+			ray->map_x += step->x;
 			ray->is_horizontal = 0;
 		}
 		else
 		{
-			side_dist_y += d_dist_y;
-			ray->map_y += step_y;
+			side_dist->y += d_dist->y;
+			ray->map_y += step->y;
 			ray->is_horizontal = 1;
 		}
 		if (wall_colission((float)ray->map_x, (float)ray->map_y))
-			break;
+			break ;
 	}
+}
 
-	//- - - - - - - CUT - HERE - - - - - - -//
-	
-// calculate the wall distance depending on which wall was hit
+void	calculate_wall_dist_and_hit(t_vec_2 player_pos, t_ray *ray,
+		t_vec_2 step)
+{
 	if (ray->is_horizontal == 0)
-		ray->wall_dist = ((float)ray->map_x - play_x + (1 - step_x) / 2) / ray->ray_dir_x;
+		ray->wall_dist = ((float)ray->map_x - player_pos.x + (1 - step.x) / 2)
+			/ ray->ray_dir_x;
 	else
-		ray->wall_dist = ((float)ray->map_y - play_y + (1 - step_y) / 2) / ray->ray_dir_y;
-// calculate the hit points of the ray
-	ray->ray_x = play_x + ray->wall_dist * ray->ray_dir_x;
-	ray->ray_y = play_y + ray->wall_dist * ray->ray_dir_y;
+		ray->wall_dist = ((float)ray->map_y - player_pos.y + (1 - step.y) / 2)
+			/ ray->ray_dir_y;
+	ray->ray_x = player_pos.x + ray->wall_dist * ray->ray_dir_x;
+	ray->ray_y = player_pos.y + ray->wall_dist * ray->ray_dir_y;
+}
+
+void	raycast(float ray_angle, t_vec_2 player_pos, t_game *game, t_ray *ray)
+{
+	t_vec_2	d_dist;
+	t_vec_2	step;
+	t_vec_2	side_dist;
+
+	ray->ray_dir_x = cos(ray_angle);
+	ray->ray_dir_y = sin(ray_angle);
+	ray->map_x = (int)floor(game->player.pos.x);
+	ray->map_y = (int)floor(game->player.pos.y);
+	d_dist.x = fabs(1 / ray->ray_dir_x);
+	d_dist.y = fabs(1 / ray->ray_dir_y);
+	calculate_step_and_side_dist(ray, &step, &side_dist, d_dist);
+	perform_dda(&side_dist, &d_dist, &step, ray);
+	calculate_wall_dist_and_hit(player_pos, ray, step);
 }

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_hooks_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/07 06:23:33 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/07 06:23:49 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include_bonus/cub3d_bonus.h"
 
-void hook_keys(mlx_key_data_t keydata, void *param)
+void	hook_keys(mlx_key_data_t keydata, void *param)
 {
 	(void)param;
-
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_RELEASE)
 	{
 		if (keydata.key == MLX_KEY_W)
@@ -24,37 +35,36 @@ void hook_keys(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void hook_resize(int32_t width, int32_t height, void* param)
+void	hook_resize(int32_t width, int32_t height, void *param)
 {
 	(void)param;
 	mlx_resize_image(game()->img, width, height);
 	mlx_image_to_window(game()->mlx, game()->img, 0, 0);
 }
 
-void hook_mouse_cursor(double xpos, double ypos, void * param)
+void	hook_mouse_cursor(double xpos, double ypos, void *param)
 {
-	t_game *g = (t_game *)param;
-	(void)ypos;
-	float xdelta;
+	t_game	*g;
+	float	xdelta;
 
+	g = (t_game *)param;
+	(void)ypos;
 	xdelta = g->mouse_delta.x - (float)xpos;
 	mlx_set_mouse_pos(g->mlx, g->img->width / 2, g->img->height / 2);
 	g->mouse_delta.x = (float)g->img->width / 2;
 	g->player.angle = (g->player.angle - (xdelta * SENSITIVITY));
 }
 
-void main_hooks()
+void	main_hooks(void)
 {
-	int32_t mouse_xpos;
-	int32_t mouse_ypos;
+	int32_t	mouse_xpos;
+	int32_t	mouse_ypos;
 
-	//bonus
 	mlx_set_cursor_mode(game()->mlx, MLX_MOUSE_HIDDEN);
 	mlx_get_mouse_pos(game()->mlx, &mouse_xpos, &mouse_ypos);
 	game()->mouse_delta.x = (float)mouse_xpos;
 	mlx_cursor_hook(game()->mlx, hook_mouse_cursor, game());
-	//mandatory
 	mlx_resize_hook(game()->mlx, hook_resize, NULL);
-	mlx_key_hook(game()->mlx,hook_keys, NULL);
+	mlx_key_hook(game()->mlx, hook_keys, NULL);
 	mlx_loop_hook(game()->mlx, render_loop, game());
 }

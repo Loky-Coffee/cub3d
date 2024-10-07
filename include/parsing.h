@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/09/27 15:35:58 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 06:20:10 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #  define MAX_PATH_LENGTH 4096
 # endif
 
-#include "cub3d.h"
 # define RED "\033[31m"
 # define GREEN "\033[92m"
 # define YELLOW "\033[93m"
@@ -86,7 +85,7 @@ void	load_colors(t_p *a);
 void	check_map_identifier(t_p *a);
 
 //load_texture_path.c
-void		load_texture_path(t_p *a);
+void	load_texture_path(t_p *a);
 
 // check_map.c
 void	find_map_start(t_p *a);
@@ -96,6 +95,5 @@ void	search_utils(t_p *a);
 //load_data_on_stack.c
 void	erase_oldmap(t_p *a);
 int		load_data_on_stack(t_p *src, t_map *dest);
-
 
 #endif

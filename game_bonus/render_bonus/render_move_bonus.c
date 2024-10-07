@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_move_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/07 06:28:41 by csteudin          #+#    #+#             */
+/*   Updated: 2024/10/07 06:46:55 by csteudin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include_bonus/cub3d_bonus.h"
 
-t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
+t_vec_2	get_next_pos(t_vec_2 pos, t_move mode)
 {
-	t_vec_2 new_pos;
+	t_vec_2	new_pos;
 
 	new_pos.x = 0;
 	new_pos.y = 0;
@@ -29,7 +41,7 @@ t_vec_2 get_next_pos(t_vec_2 pos, t_move mode)
 	return (new_pos);
 }
 
-void move(t_vec_2 new_pos)
+void	move(t_vec_2 new_pos)
 {
 	if (!wall_colission(new_pos.x, new_pos.y))
 	{
@@ -38,7 +50,7 @@ void move(t_vec_2 new_pos)
 	}
 }
 
-void look(t_game *g)
+void	look(t_game *g)
 {
 	if (g->player.look_right)
 		g->player.angle += 0.10;
@@ -46,15 +58,16 @@ void look(t_game *g)
 		g->player.angle -= 0.10;
 	g->player.angle = normalize_angle(g->player.angle);
 }
+
 /*
-*	> cosinus is for calculating how much movement is on the X
-*	> sinus is for how much on the y
-*	> then just multiply it with the speed and the you got your new position
-*/
-void render_movement(void)
+ *	> cosinus is for calculating how much movement is on the X
+ *	> sinus is for how much on the y
+ *	> then just multiply it with the speed and the you got your new position
+ */
+void	render_movement(void)
 {
-	t_game *g;
-	t_vec_2 new_pos;
+	t_game	*g;
+	t_vec_2	new_pos;
 
 	g = game();
 	look(g);
@@ -78,4 +91,17 @@ void render_movement(void)
 		new_pos = get_next_pos(g->player.pos, MOV_RIGHT);
 		move(new_pos);
 	}
+}
+
+int	wall_colission(float x, float y)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)x / TILE;
+	map_y = (int)y / TILE;
+	if ((map_x >= 0) && (map_x < game()->map->map_width) && (map_y >= 0)
+		&& map_y < game()->map->map_height)
+		return (game()->map->map[map_y][map_x] == '1');
+	return (1);
 }

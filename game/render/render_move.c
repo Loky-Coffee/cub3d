@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:30:43 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/04 13:30:58 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 06:17:11 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,17 @@ void	render_movement(void)
 		new_pos = get_next_pos(g->player.pos, MOV_RIGHT);
 		move(new_pos);
 	}
+}
+
+int	wall_colission(float x, float y)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)x / TILE;
+	map_y = (int)y / TILE;
+	if ((map_x >= 0) && (map_x < game()->map->map_width) && (map_y >= 0)
+		&& map_y < game()->map->map_height)
+		return (game()->map->map[map_y][map_x] == '1');
+	return (1);
 }
