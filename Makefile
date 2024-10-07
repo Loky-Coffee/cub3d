@@ -86,6 +86,8 @@ clean_mlx:
 	@rm -rf MLX42
 	@rm -f ./include/MLX42.h
 	@rm -f ./include/libmlx42.a
+	@rm -f ./include_bonus/MLX42.h
+	@rm -f ./include_bonus/libmlx42.a
 	@echo "MLX42-Dateien gelöscht"
 
 ############################### LIBFT_BUILD_RULES ##############################
@@ -111,6 +113,7 @@ clean_libft:
 fclean_libft: clean_libft
 	@cd include/libft && make fclean
 	@rm ./include/libft.*
+	@rm ./include_bonus/libft.*
 
 ################################# EXTRA_RULES ##################################
 

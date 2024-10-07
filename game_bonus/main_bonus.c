@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:21 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 07:06:23 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 07:21:22 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ int	ft_exit(int exit_status)
 	return (exit_status);
 }
 
-//---TODO:---//
-// -- fix RGB in map file (parsing)
-// -- split up functions
-// -- BONUS:
-// - SPRITE ANIMATION
-// - ADD FOG OF DISTANCE AKA CHANGE ALPHA VALUE DEPENDING ON DISTANCE OF WALLS
-// - doors but i dont think we will do them
 int	main(int argc, char **argv)
 {
 	t_p		parsing;

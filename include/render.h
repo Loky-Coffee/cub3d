@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:21:26 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 06:58:44 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 07:26:33 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void				initialise_map_size(void);
 int					initialise_game(t_map *map);
 
 //---LOAD IMG---//
-int					load_img(void);
+int					load_img(t_game *g);
 int					delete_textures(void);
 int					load_textures(void);
 

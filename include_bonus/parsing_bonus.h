@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/10/07 06:48:31 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 07:36:02 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@
 # define MAGENTA "\033[95m"
 # define CYAN "\033[96m"
 # define RESET "\033[0m"
+
+typedef struct s_map
+{
+	char			map_name[255];
+	char			**map;
+	char			north_texture[MAX_PATH_LENGTH];
+	char			south_texture[MAX_PATH_LENGTH];
+	char			west_texture[MAX_PATH_LENGTH];
+	char			east_texture[MAX_PATH_LENGTH];
+	int				player_pos_x;
+	int				player_pos_y;
+	u_int32_t		floor;
+	u_int32_t		ceiling;
+	int				map_width;
+	int				map_height;
+}				t_map;
 
 typedef union s_color
 {

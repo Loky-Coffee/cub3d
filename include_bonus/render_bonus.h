@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:31:41 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 06:52:32 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/07 07:37:08 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@
 # define STD_HEIGHT 1080
 # define TILE 64
 # define PI 3.1415926535
-# define RA 2 * M_PI
+# define RA 6.283185307
 # define SPEED 7.00
-# define DEG_TO_RAD(deg) ((deg)*PI / 180.0)
-# define FOV DEG_TO_RAD(80)
-
-# define FPS 40
-# define FRAME_TIME (1000000 / FPS)
+# define FOV 1.3962634016
 # define SENSITIVITY 0.004
 # define MAP_SCALE 0.3
 //---------------- structs ----------------//
@@ -133,7 +129,7 @@ void				initialise_map_size(void);
 int					initialise_game(t_map *map);
 
 //---LOAD IMG---//
-int					load_img(void);
+int					load_img(t_game *g);
 int					delete_textures(void);
 int					load_textures(void);
 
