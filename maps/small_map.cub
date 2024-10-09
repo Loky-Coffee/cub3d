@@ -1,5 +1,13 @@
+NO ./assets/Horror_map/NORTH.png
+SO ./assets/Horror_map/SOUTH.png
+WE ./assets/Horror_map/WEST.png
+EA ./assets/Horror_map/EAST.png
+
+F 255, 255, 7
+C 0, 30, 155
+
 111111
 100101
-101001
+100001
 1100N1
 111111

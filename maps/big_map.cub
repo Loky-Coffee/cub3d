@@ -1,7 +1,8 @@
-NO ./game/maps/big_map.cub
-SO ./game/maps/big_map.cub
-WE ./game/maps/big_map.cub
-EA ./game/maps/big_map.cub
+NO ./assets/children_map/Kinder_Motive1.png
+SO ./assets/children_map/Kinder_Motive2.png
+WE ./assets/children_map/Kinder_Motive3.png
+EA ./assets/children_map/Kinder_Motive4.png
+
 F 10, 255, 0
 C 10, 0, 255
 
