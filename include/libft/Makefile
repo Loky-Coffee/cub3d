@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 12:28:01 by aalatzas          #+#    #+#              #
-#    Updated: 2024/09/18 15:50:09 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/10/10 10:57:33 by csteudin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ ft_putnbr_fd.c get_next_line.c get_next_line_utils.c ft_lstnew.c ft_lstadd_front
 ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_lstsize.c \
 free_split.c ft_error.c ft_is_min_nbr.c ft_is_max_nbr.c ft_is_int.c ft_is_space.c
 
+.SILENT :
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

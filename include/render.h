@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:21:26 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 07:26:33 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:51:26 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define PI 3.1415926535
 # define RA 6.283185307
 # define SPEED 7.00
-# define FOV 1.3962634016
+# define FOV 1.0472
 # define MAP_SCALE 0.3
 
 //---------------- structs ----------------//

@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:30:43 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 06:17:11 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:53:56 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ t_vec_2	get_next_pos(t_vec_2 pos, t_move mode)
 
 void	move(t_vec_2 new_pos)
 {
-	game()->player.pos.x = new_pos.x;
-	game()->player.pos.y = new_pos.y;
+	if (!wall_colission(new_pos.x, new_pos.y))
+	{
+		game()->player.pos.x = new_pos.x;
+		game()->player.pos.y = new_pos.y;
+	}
 }
 
 void	look(t_game *g)

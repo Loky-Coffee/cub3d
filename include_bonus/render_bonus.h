@@ -6,7 +6,7 @@
 /*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:31:41 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/07 07:37:08 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:01:29 by csteudin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define PI 3.1415926535
 # define RA 6.283185307
 # define SPEED 7.00
-# define FOV 1.3962634016
-# define SENSITIVITY 0.004
+# define FOV 1.0472
+# define SENSITIVITY 0.002
 # define MAP_SCALE 0.3
 //---------------- structs ----------------//
 
@@ -108,8 +108,6 @@ void				hook_keys(mlx_key_data_t keydata, void *param);
 void				hook_resize(int32_t width, int32_t height, void *param);
 void				hook_mouse_cursor(double xpos, double ypos, void *param);
 void				main_hooks(void);
-
-//====BONUS-PART====//
 
 //---MAIN-RENDER---//
 void				render_minimap(void);

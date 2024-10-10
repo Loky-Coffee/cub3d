@@ -3,8 +3,8 @@ SO ./assets/Horror_map/SOUTH.png
 WE ./assets/Horror_map/WEST.png
 EA ./assets/Horror_map/EAST.png
 
-F 200, 200, 200
-C 200, 200, 200
+F 25, 25, 25
+C 6, 6, 6
 
 1111111111111111111
 10W1001001001000001
