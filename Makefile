@@ -103,6 +103,8 @@ libft:
 	@cd include/libft && make
 	@cp include/libft/libft.h ./include
 	@cp include/libft/libft.a ./include
+	@cp include/libft/libft.h ./include_bonus
+	@cp include/libft/libft.a ./include_bonus
 
 re_libft:
 	@cd include/libft && make re

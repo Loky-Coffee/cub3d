@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 06:31:41 by csteudin          #+#    #+#             */
-/*   Updated: 2024/10/10 11:01:29 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:19:57 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define TILE 64
 # define PI 3.1415926535
 # define RA 6.283185307
-# define SPEED 7.00
+# define SPEED 4.00
 # define FOV 1.0472
 # define SENSITIVITY 0.002
 # define MAP_SCALE 0.3
