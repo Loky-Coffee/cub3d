@@ -2,7 +2,7 @@ CC = cc # Compiler
 CFLAGS = -Wall -Wextra -Werror -Iinclude -g -Ofast -fsanitize=address
 
 # LIBS
-LIB_MLX = ./include/libmlx42.a 
+LIB_MLX = ./include/libmlx42.a
 LIBFT = ./include/libft.a
 MLX = ./include/libmlx42.a -lglfw
 
@@ -77,7 +77,7 @@ re: fclean all
 
 $(LIB_MLX):
 	@git clone https://github.com/codam-coding-college/MLX42.git
-	@cd MLX42; cmake -B build; cmake --build build -j4
+	@cd MLX42; git checkout 4c275721d0de1a9c514c857c29e9dd235d874591; cmake -B build; cmake --build build -j4
 	@cp MLX42/build/libmlx42.a ./include
 	@cp MLX42/include/MLX42/MLX42.h ./include
 	@rm -rf MLX42
