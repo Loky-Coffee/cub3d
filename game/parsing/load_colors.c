@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/10/04 13:26:26 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:26:34 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {
 	uint8_t		color;
-	size_t		i;
 
 	color = 0;
-	i = 0;
 	while (!ft_isdigit(**str))
 	{
 		if (*(*str) == ',')
@@ -30,7 +28,6 @@ static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 	while (*str && **str && ft_isdigit(**str))
 	{
 		color = color * 10 + (**str - '0');
-		i++;
 		(*str)++;
 	}
 	if (color < 0 || color > 255)
@@ -43,9 +40,9 @@ static void	convert_color_to_int(t_color *color, char *str, t_p *a)
 	char	*it;
 
 	it = str + 1;
-	get_next_color (&it, true, &color->red, a);
+	get_next_color (&it, true, &color->blue, a);
 	get_next_color (&it, false, &color->green, a);
-	get_next_color (&it, false, &color->blue, a);
+	get_next_color (&it, false, &color->red, a);
 	color->alpha = 255;
 }
 
