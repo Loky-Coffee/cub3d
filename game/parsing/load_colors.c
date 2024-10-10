@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 05:46:20 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/10/10 11:26:34 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:50:45 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static void	get_next_color(char **str, bool comma, unsigned char *p, t_p *a)
 {
-	uint8_t		color;
+	int		color;
 
 	color = 0;
 	while (!ft_isdigit(**str))
 	{
 		if (*(*str) == ',')
 			comma = true;
+		if (**str == '-')
+			error_exit(a, "ERROR: Colors cannot be negative", 1);
 		(*str)++;
 	}
 	if (comma == false)

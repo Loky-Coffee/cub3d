@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csteudin <csteudin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 22:03:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/10/07 07:36:02 by csteudin         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:55:49 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,13 @@ typedef struct s_p
 	bool	map_not_valid;
 	bool	start_find;
 	char	north_texture[MAX_PATH_LENGTH];
+	bool	north;
 	char	south_texture[MAX_PATH_LENGTH];
+	bool	south;
 	char	west_texture[MAX_PATH_LENGTH];
+	bool	west;
 	char	east_texture[MAX_PATH_LENGTH];
+	bool	east;
 	t_color	floor;
 	t_color	ceiling;
 	t_pos	map_pos;
